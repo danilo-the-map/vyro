@@ -333,7 +333,7 @@
         <form onSubmit="{{ newsSubmit }}" style="flex:1 1 300px;max-width:520px;display:flex;flex-direction:column;gap:14px">
           <label for="news-foot" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-700)">Newsletter</label>
           <div style="display:flex;gap:8px;padding:6px;background:var(--white);border:1px solid var(--grey-300);border-radius:999px">
-            <input id="news-foot" type="email" required="" placeholder="{{ t.emailPh }}" autocomplete="email" style="flex:1;min-width:0;appearance:none;border:0;background:transparent;padding:0 16px;font:400 16px var(--font-body);color:var(--ink);outline:none;border-radius:999px"></input>
+            <input id="news-foot" type="email" required="{{ true }}" placeholder="{{ t.emailPh }}" autocomplete="email" style="flex:1;min-width:0;appearance:none;border:0;background:transparent;padding:0 16px;font:400 16px var(--font-body);color:var(--ink);outline:none;border-radius:999px"></input>
             <x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Button" type="submit" variant="primary" size="sm" hint-size="110px,36px">{{ newsLabel }}</x-import>
           </div>
           <p style="margin:0;font-size:13px;color:var(--grey-600)">{{ t.ftNl }}</p>
