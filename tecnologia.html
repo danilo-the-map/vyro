@@ -30,7 +30,7 @@
 
   <header style="position:fixed;top:0;left:0;right:0;z-index:100;height:84px;background:{{ navBg }};backdrop-filter:{{ navBlur }};-webkit-backdrop-filter:{{ navBlur }};color:{{ navInk }};transition:background 240ms var(--ease-standard), color 240ms var(--ease-standard)">
     <div style="max-width:1440px;height:100%;margin:0 auto;padding:0 clamp(20px,4.4vw,64px);display:flex;align-items:center;justify-content:space-between;gap:20px">
-      <a href="index.html" aria-label="{{ t.homeAria }}" style="position:relative;display:block;width:{{ L.logoW }};height:40px;flex:none">
+      <a href="index.html" aria-label="{{ t.homeAria }}" style="position:relative;display:block;width:{{ L.logoW }};height:54px;flex:none">
         <img src="assets/vyro-horizontal-white.png" alt="Vyro Biotherapeutics" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:left center;opacity:{{ logoW }};transition:opacity 240ms"></img>
         <img src="assets/vyro-horizontal.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:left center;opacity:{{ logoC }};transition:opacity 240ms"></img>
       </a>
@@ -549,7 +549,7 @@ body.ann [data-ann]::before{content:attr(data-ann);position:absolute;top:100px;r
   renderVals() {
     const st = this.state, w = st.w, m = w < 760, side = w >= 1180, stack = w < 900, en = st.lang === 'en', t = Component.TX[en ? 'en' : 'pt'];
     const L = {
-      gridBg: m ? 'calc(100% / 4)' : 'calc(100% / 12)', logoW: m ? '148px' : '178px',
+      gridBg: m ? 'calc(100% / 4)' : 'calc(100% / 12)', logoW: m ? 'min(178px, calc(100vw - 212px))' : '178px',
       texW: m ? '150%' : '62%', texH: m ? '90%' : '116%', texT: m ? '-12%' : '-8%', texR: m ? '-60%' : '-8%',
       heroTop: m ? '128px' : '172px', h1: m ? '11.4vw' : 'clamp(56px, 7.4vw, 124px)',
       navGap: m ? '10px' : '24px', langH: m ? '44px' : '36px', langW: m ? '36px' : '32px',
