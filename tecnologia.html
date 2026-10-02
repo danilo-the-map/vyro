@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tecnologia · Vyro Biotherapeutics</title>
+<meta name="description" content="Como a Vyro transforma o vírus zika em uma plataforma experimental contra tumores malignos do sistema nervoso central: mecanismo, plataformas oZIKV e ZIKVV, dados de pesquisa e próximos passos.">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/vyro-biotherapeutics-design-system-a41d101f-dcb3-4af5-b03d-412de5825624/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/vyro-biotherapeutics-design-system-a41d101f-dcb3-4af5-b03d-412de5825624/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/vyro-biotherapeutics-design-system-a41d101f-dcb3-4af5-b03d-412de5825624/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/vyro-biotherapeutics-design-system-a41d101f-dcb3-4af5-b03d-412de5825624/tokens/base.css">
+  <link rel="stylesheet" href="_ds/vyro-biotherapeutics-design-system-a41d101f-dcb3-4af5-b03d-412de5825624/styles.css">
+  <script src="_ds/vyro-biotherapeutics-design-system-a41d101f-dcb3-4af5-b03d-412de5825624/_ds_bundle.js"></script>
+  <script src="image-slot.js"></script>
+  <style>
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:#0c0326}
+    a{color:var(--indigo-700)}
+    a:hover{color:var(--indigo-500)}
+    image-slot[src]::part(ring){display:none}
+  </style>
+</helmet>
+<div ref="{{ rootRef }}" lang="{{ langAttr }}" style="font-family:var(--font-body);color:var(--ink);background:var(--white);overflow-x:clip">
+
+  <header style="position:fixed;top:0;left:0;right:0;z-index:100;height:84px;background:{{ navBg }};backdrop-filter:{{ navBlur }};-webkit-backdrop-filter:{{ navBlur }};color:{{ navInk }};transition:background 240ms var(--ease-standard), color 240ms var(--ease-standard)">
+    <div style="max-width:1440px;height:100%;margin:0 auto;padding:0 clamp(20px,4.4vw,64px);display:flex;align-items:center;justify-content:space-between;gap:20px">
+      <a href="index.html" aria-label="{{ t.homeAria }}" style="position:relative;display:block;width:{{ L.logoW }};height:54px;flex:none">
+        <img src="assets/vyro-horizontal-white.png" alt="Vyro Biotherapeutics" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:left center;opacity:{{ logoW }};transition:opacity 240ms"></img>
+        <img src="assets/vyro-horizontal.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:left center;opacity:{{ logoC }};transition:opacity 240ms"></img>
+      </a>
+      <div style="display:flex;align-items:center;gap:{{ L.navGap }}">
+        <sc-if value="{{ navFull }}" hint-placeholder-val="{{ true }}">
+          <nav aria-label="{{ t.navMain }}" style="display:flex;align-items:center;gap:clamp(16px,1.9vw,32px)">
+            <sc-for list="{{ navLinks }}" as="n" hint-placeholder-count="6">
+              <a href="{{ n.href }}" aria-current="{{ n.cur }}" style="color:inherit;font-size:15px;font-weight:{{ n.fw }};text-decoration:none;white-space:nowrap;border-bottom:1px solid {{ n.bd }};padding:2px 0">{{ n.label }}</a>
+            </sc-for>
+          </nav>
+        </sc-if>
+        <div role="group" aria-label="Idioma / Language" style="display:flex;align-items:center;gap:2px;height:{{ L.langH }};padding:3px;border:1px solid {{ langBd }};border-radius:999px">
+          <button type="button" onClick="{{ setPT }}" aria-pressed="{{ isPT }}" lang="pt-BR" style="appearance:none;cursor:pointer;height:100%;min-width:{{ L.langW }};padding:0 10px;border:0;border-radius:999px;background:{{ ptBg }};color:{{ ptFg }};font:600 12px var(--font-display);letter-spacing:.08em;transition:background 240ms var(--ease-standard), color 240ms var(--ease-standard)">PT</button>
+          <button type="button" onClick="{{ setEN }}" aria-pressed="{{ isEN }}" lang="en" style="appearance:none;cursor:pointer;height:100%;min-width:{{ L.langW }};padding:0 10px;border:0;border-radius:999px;background:{{ enBg }};color:{{ enFg }};font:600 12px var(--font-display);letter-spacing:.08em;transition:background 240ms var(--ease-standard), color 240ms var(--ease-standard)">EN</button>
+        </div>
+        <sc-if value="{{ navCta }}" hint-placeholder-val="{{ true }}">
+          <x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Button" variant="{{ navBtn }}" size="sm" as="a" href="index.html#contato" hint-size="140px,36px">{{ t.contact }}</x-import>
+        </sc-if>
+        <sc-if value="{{ navMenu }}" hint-placeholder-val="{{ false }}">
+          <button type="button" onClick="{{ toggleMenu }}" aria-expanded="{{ menuA }}" style="appearance:none;background:none;border:1px solid currentColor;color:inherit;border-radius:999px;height:44px;padding:0 18px;font:600 14px var(--font-display);letter-spacing:.04em;cursor:pointer">{{ menuLabel }}</button>
+        </sc-if>
+      </div>
+    </div>
+  </header>
+  <sc-if value="{{ menu }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:99;background:var(--indigo-900);padding:116px 20px 32px;display:flex;flex-direction:column;justify-content:space-between;gap:32px;overflow-y:auto">
+      <nav aria-label="Menu" style="display:flex;flex-direction:column;gap:4px">
+        <sc-for list="{{ navLinks }}" as="n" hint-placeholder-count="6">
+          <a href="{{ n.href }}" onClick="{{ closeMenu }}" aria-current="{{ n.cur }}" style="display:flex;align-items:center;gap:14px;min-height:56px;color:#fff;font-size:36px;font-weight:700;letter-spacing:-.03em;text-decoration:none">{{ n.label }}<i style="display:{{ n.dot }};width:8px;height:8px;border-radius:50%;background:var(--signal-teal)"></i></a>
+        </sc-for>
+      </nav>
+      <x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Button" variant="inverse" size="lg" as="a" href="index.html#contato" full-width="{{ true }}" onClick="{{ closeMenu }}" hint-size="100%,56px">{{ t.contact }}</x-import>
+    </div>
+  </sc-if>
+
+  <!-- 1 HERO -->
+  <section id="topo" data-tone="dark" data-ann="01 · HERO — Mais contido que o da home: 72vh. Linhas sobem de máscara, 1100ms, stagger 140ms. Textura à direita respira sem loop (senos de 17/23/29s)." style="position:relative;min-height:72vh;min-height:72svh;display:flex;align-items:flex-end;background:radial-gradient(120% 95% at 78% 20%, #1c0a4f 0%, #140638 48%, #0c0326 100%);color:#fff;overflow:hidden">
+    <div aria-hidden="true" style="position:absolute;top:{{ L.texT }};right:{{ L.texR }};width:{{ L.texW }};height:{{ L.texH }};opacity:.5;-webkit-mask-image:radial-gradient(closest-side, #000 25%, transparent 100%);mask-image:radial-gradient(closest-side, #000 25%, transparent 100%)">
+      <div data-breathe="" style="position:absolute;inset:0;transform:scale(1.08)"><img src="assets/tumor-a.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></img></div>
+    </div>
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none"><div style="height:100%;max-width:1440px;margin:0 auto;padding:0 clamp(20px,4.4vw,64px)"><div style="height:100%;background-image:linear-gradient(to right, rgba(255,255,255,.07) 1px, transparent 1px);background-size:{{ L.gridBg }} 100%;border-right:1px solid rgba(255,255,255,.07)"></div></div></div>
+    <div style="position:relative;width:100%;max-width:1440px;margin:0 auto;padding:{{ L.heroTop }} clamp(20px,4.4vw,64px) clamp(40px,6vw,88px);display:flex;flex-direction:column;gap:clamp(24px,3.4vw,48px)">
+      <div data-rv="" style="display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px">
+        <span style="display:inline-flex;align-items:center;gap:10px;height:32px;padding:0 14px;border:1px solid rgba(255,255,255,.28);border-radius:999px;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-100)"><i style="width:6px;height:6px;border-radius:50%;background:var(--signal-amber)"></i>{{ t.seal }}</span>
+        <x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Eyebrow" color="var(--indigo-200)" hint-size="110px,20px">{{ t.ebTech }}</x-import>
+      </div>
+      <h1 style="margin:0;font-family:var(--font-display);font-weight:800;font-size:{{ L.h1 }};line-height:.95;letter-spacing:-.045em;color:#fff">
+        <span data-rv="line" style="display:block;overflow:hidden;padding:.14em 0 .24em;margin:-.14em 0 -.2em;--d:80ms"><span>{{ t.h1a }}</span></span>
+        <span data-rv="line" style="display:block;overflow:hidden;padding:.14em 0 .24em;margin:-.14em 0 -.1em;--d:220ms"><span>{{ t.h1b }}</span></span>
+      </h1>
+      <p data-rv="" style="--d:420ms;margin:0;max-width:34em;font-size:clamp(17px,1.6vw,22px);line-height:1.55;color:var(--indigo-100);text-wrap:pretty">{{ t.heroSup }}</p>
+    </div>
+  </section>
+
+  <div style="display:flex;align-items:flex-start;position:relative">
+    <sc-if value="{{ side }}" hint-placeholder-val="{{ true }}">
+      <nav aria-label="{{ t.tocAria }}" style="position:sticky;top:84px;flex:none;width:248px;height:calc(100vh - 84px);padding:clamp(40px,5vw,72px) 0 40px clamp(20px,4.4vw,64px);display:flex;flex-direction:column;gap:2px;background:var(--white);border-right:1px solid var(--grey-200);z-index:40">
+        <span style="margin-bottom:20px;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-600)">{{ t.tocLabel }}</span>
+        <sc-for list="{{ toc }}" as="s" hint-placeholder-count="6">
+          <a href="{{ s.href }}" aria-current="{{ s.cur }}" style="display:flex;align-items:baseline;gap:12px;padding:9px 16px 9px 14px;font-size:14px;line-height:1.3;text-decoration:none;color:{{ s.c }};border-left:2px solid {{ s.bd }};transition:color 240ms var(--ease-standard), border-color 240ms var(--ease-standard)" style-hover="color:var(--indigo-700)">
+            <span style="font-family:var(--font-mono);font-size:11px;opacity:.7">{{ s.n }}</span><span style="font-weight:{{ s.fw }}">{{ s.label }}</span>
+          </a>
+        </sc-for>
+      </nav>
+    </sc-if>
+
+    <main style="flex:1 1 auto;min-width:0">
+      <sc-if value="{{ chips }}" hint-placeholder-val="{{ false }}">
+        <nav data-chips="" aria-label="{{ t.tocAria }}" style="position:sticky;top:84px;z-index:40;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:10px clamp(20px,4.4vw,64px);background:rgba(255,255,255,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--grey-200)">
+          <sc-for list="{{ toc }}" as="s" hint-placeholder-count="6">
+            <a href="{{ s.href }}" data-chip="{{ s.id }}" aria-current="{{ s.cur }}" style="flex:none;height:40px;display:inline-flex;align-items:center;padding:0 16px;border-radius:999px;border:1px solid {{ s.mbd }};background:{{ s.mbg }};color:{{ s.mc }};font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap;transition:background 240ms var(--ease-standard), color 240ms var(--ease-standard), border-color 240ms var(--ease-standard)">{{ s.label }}</a>
+          </sc-for>
+        </nav>
+      </sc-if>
+
+      <!-- 2 ABERTURA -->
+      <section id="abertura" data-sec="" data-tone="light" data-ann="02 · ABERTURA — Dois parágrafos em escala grande (clamp 22–39px). Reveal sobe 32px, 1100ms, segundo parágrafo +160ms." style="position:relative;background:var(--white);padding:clamp(72px,9vw,144px) 0">
+        <div style="max-width:1100px;margin:0 auto;padding:0 clamp(20px,4.4vw,64px)">
+          <div style="display:flex;align-items:center;gap:14px;color:var(--indigo-700)"><span style="width:40px;height:1px;background:currentColor"></span><x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Eyebrow" hint-size="100px,20px">{{ t.ebOpen }}</x-import></div>
+          <div style="display:flex;flex-direction:column;gap:clamp(24px,2.6vw,40px);margin-top:clamp(28px,4vw,56px)">
+            <p data-rv="" style="margin:0;font-size:clamp(22px,2.7vw,39px);font-weight:300;line-height:1.3;letter-spacing:-.02em;color:var(--ink);text-wrap:pretty">{{ t.open1 }}</p>
+            <p data-rv="" style="--d:160ms;margin:0;font-size:clamp(22px,2.7vw,39px);font-weight:300;line-height:1.3;letter-spacing:-.02em;color:var(--grey-700);text-wrap:pretty">{{ t.open2 }}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 QUATRO ETAPAS · desktop: pin -->
+      <sc-if value="{{ pin }}" hint-placeholder-val="{{ true }}">
+        <section id="etapas" data-sec="" data-tone="dark" data-ann="03 · EM QUATRO ETAPAS — Pin de 400vh. Micrografias fazem crossfade de 900ms conforme a etapa avança, com escala contínua 1.00→1.10 ligada ao scroll. Texto: saída −24px, entrada +24px, 520ms. Trilha de quatro traços acompanha a etapa." style="position:relative;height:400vh;background:#0c0326">
+          <div style="position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#0c0326;color:#fff">
+            <div style="position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)">
+              <div style="position:relative;overflow:hidden;background:var(--indigo-900)">
+                <sc-for list="{{ steps }}" as="sp" hint-placeholder-count="4">
+                  <div data-stimg="" style="position:absolute;inset:0;opacity:{{ sp.io }};transition:opacity 900ms var(--ease-standard)"><image-slot id="{{ sp.slot }}" shape="rect" src="{{ sp.img }}" placeholder="{{ sp.cap }}" style="display:block;width:100%;height:100%"></image-slot></div>
+                </sc-for>
+                <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to top, rgba(12,3,38,.75), rgba(12,3,38,.05) 50%);pointer-events:none"></div>
+                <p style="position:absolute;left:clamp(16px,2vw,28px);right:clamp(16px,2vw,28px);bottom:clamp(16px,2vw,28px);margin:0;font-family:var(--font-mono);font-size:11px;line-height:1.5;letter-spacing:.06em;color:var(--indigo-100);pointer-events:none">{{ stepCap }}</p>
+              </div>
+              <div style="position:relative;display:flex;flex-direction:column;justify-content:center;gap:clamp(20px,3vh,40px);padding:120px clamp(28px,4vw,72px) 48px;min-width:0">
+                <div style="display:flex;align-items:center;gap:14px;color:var(--indigo-200)">
+                  <x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Eyebrow" color="var(--indigo-200)" hint-size="150px,20px">{{ t.ebSteps }}</x-import>
+                  <span style="margin-left:auto;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em">{{ stepLabel }} / 04</span>
+                </div>
+                <div style="display:grid">
+                  <sc-for list="{{ steps }}" as="sp" hint-placeholder-count="4">
+                    <div aria-hidden="{{ sp.ah }}" style="grid-area:1 / 1;opacity:{{ sp.o }};transform:translateY({{ sp.y }});transition:opacity 520ms var(--ease-standard), transform 520ms var(--ease-standard)">
+                      <p style="margin:0 0 16px;font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--signal-teal)">{{ sp.lbl }}</p>
+                      <h2 style="margin:0 0 20px;font-size:clamp(32px,3.6vw,56px);font-weight:700;line-height:1.02;letter-spacing:-.035em;color:#fff;text-wrap:balance">{{ sp.h }}</h2>
+                      <p style="margin:0 0 14px;max-width:32em;font-size:clamp(16px,1.25vw,18px);line-height:1.6;color:var(--indigo-100);text-wrap:pretty">{{ sp.p1 }}</p>
+                      <p style="margin:0;max-width:32em;font-size:clamp(16px,1.25vw,18px);line-height:1.6;color:var(--indigo-200);text-wrap:pretty">{{ sp.p2 }}</p>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="display:flex;gap:6px;max-width:32em" aria-hidden="true">
+                  <sc-for list="{{ steps }}" as="r" hint-placeholder-count="4"><span style="position:relative;flex:1;height:2px"><i style="position:absolute;inset:0;background:#fff;opacity:.2"></i><i data-strail="" style="position:absolute;inset:0;background:var(--signal-teal);transform-origin:left;transform:scaleX(0)"></i></span></sc-for>
+                </div>
+                <p style="margin:0;max-width:34em;font-size:13px;line-height:1.5;color:var(--indigo-200)">{{ t.note }}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </sc-if>
+
+      <!-- 3 QUATRO ETAPAS · mobile/tablet: empilhado -->
+      <sc-if value="{{ stack }}" hint-placeholder-val="{{ false }}">
+        <section id="etapas" data-sec="" data-tone="dark" style="position:relative;background:#0c0326;color:#fff;padding:clamp(72px,9vw,120px) 0">
+          <div style="max-width:760px;margin:0 auto;padding:0 clamp(20px,4.4vw,64px)">
+            <div style="display:flex;align-items:center;gap:14px;color:var(--indigo-200)"><span style="width:40px;height:1px;background:currentColor"></span><x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Eyebrow" color="var(--indigo-200)" hint-size="150px,20px">{{ t.ebSteps }}</x-import></div>
+            <h2 data-rv="" style="margin:24px 0 0;font-size:clamp(36px,9vw,56px);font-weight:800;line-height:1;letter-spacing:-.035em;color:#fff">{{ t.stepsH2 }}</h2>
+            <ol style="list-style:none;margin:48px 0 0;padding:0;display:flex;flex-direction:column;gap:56px">
+              <sc-for list="{{ steps }}" as="sp" hint-placeholder-count="4">
+                <li data-rv="" style="display:flex;flex-direction:column;gap:20px">
+                  <figure style="margin:0;position:relative;aspect-ratio:4 / 3;border-radius:var(--radius-lg);overflow:hidden;background:var(--indigo-900)">
+                    <image-slot id="{{ sp.slot }}" shape="rect" src="{{ sp.img }}" placeholder="{{ sp.cap }}" style="display:block;width:100%;height:100%"></image-slot>
+                    <span aria-hidden="true" style="position:absolute;left:16px;top:16px;height:28px;padding:0 10px;display:inline-flex;align-items:center;border-radius:999px;background:rgba(12,3,38,.7);font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;color:#fff">{{ sp.n }} / 04</span>
+                  </figure>
+                  <div>
+                    <p style="margin:0 0 12px;font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--signal-teal)">{{ sp.lbl }}</p>
+                    <h3 style="margin:0 0 16px;font-size:clamp(28px,7.4vw,40px);font-weight:700;line-height:1.05;letter-spacing:-.03em;color:#fff;text-wrap:balance">{{ sp.h }}</h3>
+                    <p style="margin:0 0 12px;font-size:17px;line-height:1.6;color:var(--indigo-100)">{{ sp.p1 }}</p>
+                    <p style="margin:0;font-size:17px;line-height:1.6;color:var(--indigo-200)">{{ sp.p2 }}</p>
+                  </div>
+                </li>
+              </sc-for>
+            </ol>
+            <p style="margin:48px 0 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.16);font-size:13px;line-height:1.55;color:var(--indigo-200)">{{ t.note }}</p>
+          </div>
+        </section>
+      </sc-if>
+
+      <!-- 4 LINHA 01 -->
+      <section id="linha-01" data-sec="" data-tone="light" data-ann="04 · LINHA 01 — Branco. Imagem grande com reveal (sobe 32px, 1100ms). Características numeradas em régua tipográfica." style="position:relative;background:var(--white);padding:clamp(80px,10vw,160px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4.4vw,64px)">
+          <div style="display:flex;align-items:center;gap:14px;color:var(--indigo-700)"><span style="font-family:var(--font-mono);font-size:12px;letter-spacing:.06em">{{ t.l1 }}</span><span style="width:40px;height:1px;background:currentColor"></span><x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Eyebrow" hint-size="140px,20px">{{ t.ebPlat }}</x-import></div>
+          <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 48px;margin-top:28px">
+            <h2 data-rv="" style="margin:0;max-width:14em;font-size:clamp(36px,5vw,76px);font-weight:800;line-height:1;letter-spacing:-.04em;color:var(--ink);text-wrap:balance"><span style="color:var(--indigo-700)">oZIKV</span> {{ t.l1h }}</h2>
+            <p data-rv="" style="--d:120ms;margin:0;flex:0 1 340px;font-family:var(--font-mono);font-size:12px;line-height:1.6;letter-spacing:.06em;color:var(--grey-600);text-wrap:pretty">{{ t.l1k }}</p>
+          </div>
+          <div data-rv="" style="--d:200ms;position:relative;margin-top:clamp(32px,5vw,72px);height:{{ L.bigH }};border-radius:var(--radius-xl);overflow:hidden;background:var(--indigo-900)">
+            <image-slot id="tec-linha-01" shape="rect" src="assets/virus-b.jpg" placeholder="{{ t.l1cap }}" style="display:block;width:100%;height:100%"></image-slot>
+          </div>
+          <p style="margin:14px 0 0;font-family:var(--font-mono);font-size:11px;line-height:1.5;letter-spacing:.06em;color:var(--grey-600)">{{ t.l1cap }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:clamp(40px,4vw,64px);margin-top:clamp(40px,6vw,88px)">
+            <div style="flex:3 1 420px;min-width:0;display:flex;flex-direction:column;gap:20px">
+              <p data-rv="" style="margin:0;font-size:clamp(17px,1.4vw,20px);line-height:1.65;color:var(--ink);text-wrap:pretty">{{ t.l1p1 }}</p>
+              <p data-rv="" style="--d:120ms;margin:0;font-size:clamp(17px,1.4vw,20px);line-height:1.65;color:var(--grey-700);text-wrap:pretty">{{ t.l1p2 }}</p>
+              <p data-rv="" style="--d:240ms;margin:0;font-size:clamp(17px,1.4vw,20px);line-height:1.65;color:var(--grey-700);text-wrap:pretty">{{ t.l1p3 }}</p>
+            </div>
+            <ol style="flex:2 1 300px;min-width:0;list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)">
+              <sc-for list="{{ feats }}" as="f" hint-placeholder-count="4">
+                <li data-rv="fade" style="--d:{{ f.d }};display:flex;gap:16px;padding:clamp(18px,2vw,26px) 0;border-bottom:1px solid var(--grey-300)">
+                  <span style="flex:none;font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--grey-600);padding-top:6px">{{ f.n }}</span>
+                  <span style="display:flex;flex-direction:column;gap:8px"><span style="font-size:clamp(19px,1.7vw,24px);font-weight:700;letter-spacing:-.02em;color:var(--ink);text-wrap:pretty">{{ f.h }}</span><span style="font-size:15px;line-height:1.55;color:var(--grey-700);text-wrap:pretty">{{ f.p }}</span></span>
+                </li>
+              </sc-for>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 LINHA 02 -->
+      <section id="linha-02" data-sec="" data-tone="dark" data-ann="05 · LINHA 02 — Mesma estrutura da Linha 01, invertida em indigo-900, imagem à esquerda em 5/7." style="position:relative;background:var(--indigo-900);color:#fff;padding:clamp(80px,10vw,160px) 0">
+        <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none"><div style="height:100%;max-width:1280px;margin:0 auto;padding:0 clamp(20px,4.4vw,64px)"><div style="height:100%;background-image:linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px);background-size:{{ L.gridBg }} 100%;border-right:1px solid rgba(255,255,255,.06)"></div></div></div>
+        <div style="position:relative;max-width:1280px;margin:0 auto;padding:0 clamp(20px,4.4vw,64px)">
+          <div style="display:flex;align-items:center;gap:14px;color:var(--indigo-200)"><span style="font-family:var(--font-mono);font-size:12px;letter-spacing:.06em">{{ t.l2 }}</span><span style="width:40px;height:1px;background:currentColor"></span><x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Eyebrow" color="var(--indigo-200)" hint-size="140px,20px">{{ t.ebPlat }}</x-import></div>
+          <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 48px;margin-top:28px">
+            <h2 data-rv="" style="margin:0;max-width:14em;font-size:clamp(36px,5vw,76px);font-weight:800;line-height:1;letter-spacing:-.04em;color:#fff;text-wrap:balance"><span style="color:var(--indigo-200)">ZIKVV</span> {{ t.l2h }}</h2>
+            <p data-rv="" style="--d:120ms;margin:0;flex:0 1 340px;font-family:var(--font-mono);font-size:12px;line-height:1.6;letter-spacing:.06em;color:var(--indigo-200);text-wrap:pretty">{{ t.l2k }}</p>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:clamp(40px,4vw,64px);margin-top:clamp(32px,5vw,72px)">
+            <div style="flex:5 1 360px;min-width:0">
+              <div data-rv="" style="position:relative;height:{{ L.bigH2 }};border-radius:var(--radius-xl);overflow:hidden;background:radial-gradient(80% 80% at 50% 45%, #1c0a4f 0%, #0c0326 100%)">
+                <image-slot id="tec-linha-02" shape="rect" fit="contain" src="assets/device-node.png" placeholder="{{ t.l2cap }}" style="display:block;width:100%;height:100%"></image-slot>
+              </div>
+              <p style="margin:14px 0 0;font-family:var(--font-mono);font-size:11px;line-height:1.5;letter-spacing:.06em;color:var(--indigo-200)">{{ t.l2cap }}</p>
+            </div>
+            <div style="flex:7 1 420px;min-width:0;display:flex;flex-direction:column;gap:20px">
+              <p data-rv="" style="margin:0;font-size:clamp(17px,1.4vw,20px);line-height:1.65;color:#fff;text-wrap:pretty">{{ t.l2p1 }}</p>
+              <p data-rv="" style="--d:120ms;margin:0;font-size:clamp(17px,1.4vw,20px);line-height:1.65;color:var(--indigo-100);text-wrap:pretty">{{ t.l2p2 }}</p>
+              <p data-rv="" style="--d:240ms;margin:0;font-size:clamp(17px,1.4vw,20px);line-height:1.65;color:var(--indigo-100);text-wrap:pretty">{{ t.l2p3 }}</p>
+              <ol style="list-style:none;margin:12px 0 0;padding:0;border-top:2px solid rgba(255,255,255,.4)">
+                <sc-for list="{{ feats2 }}" as="f" hint-placeholder-count="3">
+                  <li data-rv="fade" style="--d:{{ f.d }};display:flex;gap:16px;padding:clamp(18px,2vw,26px) 0;border-bottom:1px solid rgba(255,255,255,.18)">
+                    <span style="flex:none;font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--indigo-200);padding-top:6px">{{ f.n }}</span>
+                    <span style="display:flex;flex-direction:column;gap:8px"><span style="font-size:clamp(19px,1.7vw,24px);font-weight:700;letter-spacing:-.02em;color:#fff;text-wrap:pretty">{{ f.h }}</span><span style="font-size:15px;line-height:1.55;color:var(--indigo-100);text-wrap:pretty">{{ f.p }}</span></span>
+                  </li>
+                </sc-for>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 DADOS DE PESQUISA -->
+      <section id="dados" data-sec="" data-tone="light" data-ann="06 · DADOS DE PESQUISA — Seção mais importante. Blocos entram por fade de 600ms, sem deslocamento. Imagens ilustrativas, sem hover nem zoom; as figuras originais ficam nos artigos." style="position:relative;background:var(--grey-50);padding:clamp(80px,10vw,160px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4.4vw,64px)">
+          <div style="display:flex;align-items:center;gap:14px;color:var(--indigo-700)"><span style="width:40px;height:1px;background:currentColor"></span><x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Eyebrow" hint-size="160px,20px">{{ t.ebData }}</x-import></div>
+          <h2 data-rv="" style="margin:28px 0 0;max-width:14em;font-size:clamp(36px,5.6vw,84px);font-weight:800;line-height:.98;letter-spacing:-.035em;color:var(--ink);text-wrap:balance">{{ t.dataH2 }}</h2>
+          <p data-rv="" style="--d:120ms;margin:24px 0 0;max-width:40em;font-size:clamp(17px,1.4vw,20px);line-height:1.6;color:var(--grey-700);text-wrap:pretty">{{ t.dataIntro }}</p>
+
+          <sc-for list="{{ studies }}" as="sd" hint-placeholder-count="3">
+            <article id="{{ sd.id }}" data-rv="fade" style="margin-top:clamp(56px,7vw,104px)">
+              <header style="display:flex;flex-direction:column;gap:12px;padding-bottom:20px;border-bottom:2px solid var(--ink)">
+                <span style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;color:var(--indigo-700)"><span>{{ sd.k }}</span><span style="color:var(--grey-600)">{{ sd.j }} · {{ sd.y }}</span></span>
+                <h3 style="margin:0;max-width:24em;font-size:clamp(24px,2.4vw,34px);font-weight:700;line-height:1.15;letter-spacing:-.025em;color:var(--ink);text-wrap:balance">{{ sd.h }}</h3>
+              </header>
+              <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,3vw,48px);margin-top:28px">
+                <figure style="flex:5 1 320px;min-width:0;margin:0;display:flex;flex-direction:column;gap:12px">
+                  <div style="position:relative;aspect-ratio:4 / 3;border-radius:var(--radius-lg);overflow:hidden;background:{{ sd.bg }}">
+                    <image-slot id="{{ sd.slot }}" shape="rect" fit="{{ sd.fit }}" src="{{ sd.img }}" placeholder="{{ t.illus }}" style="display:block;width:100%;height:100%"></image-slot>
+                  </div>
+                  <figcaption style="font-family:var(--font-mono);font-size:11px;line-height:1.5;letter-spacing:.06em;color:var(--grey-600)">{{ t.illus }}</figcaption>
+                </figure>
+                <div style="flex:7 1 420px;min-width:0;display:flex;flex-direction:column">
+                  <dl style="margin:0">
+                    <sc-for list="{{ sd.rows }}" as="r" hint-placeholder-count="3">
+                      <div style="display:grid;grid-template-columns:{{ L.dlCols }};gap:6px 24px;padding:18px 0;border-bottom:1px solid var(--grey-300)">
+                        <dt style="font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-600);padding-top:4px">{{ r.k }}</dt>
+                        <dd style="margin:0;font-size:clamp(16px,1.3vw,18px);line-height:1.6;color:var(--ink);text-wrap:pretty">{{ r.v }}</dd>
+                      </div>
+                    </sc-for>
+                  </dl>
+                  <a href="{{ sd.href }}" target="_blank" rel="noopener" style="align-self:flex-start;display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-top:20px;font-size:16px;font-weight:600;text-decoration:none;border-bottom:1px solid currentColor">{{ t.readPaper }}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></a>
+                </div>
+              </div>
+            </article>
+          </sc-for>
+
+          <p style="margin:clamp(48px,6vw,80px) 0 0;display:flex;gap:10px;max-width:46em;font-size:14px;line-height:1.55;color:var(--grey-700)"><i style="flex:none;width:6px;height:6px;margin-top:8px;border-radius:50%;background:var(--signal-amber)"></i><span>{{ t.note }}</span></p>
+        </div>
+      </section>
+
+      <!-- 7 PRÓXIMOS PASSOS -->
+      <section id="proximos" data-sec="" data-tone="light" data-ann="07 · PRÓXIMOS PASSOS — Três colunas com régua; a etapa em andamento ganha marcador teal. Reveal escalonado de 120ms." style="position:relative;background:var(--white);padding:clamp(80px,10vw,160px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4.4vw,64px)">
+          <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px 48px">
+            <div>
+              <div style="display:flex;align-items:center;gap:14px;color:var(--indigo-700)"><span style="width:40px;height:1px;background:currentColor"></span><x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Eyebrow" hint-size="160px,20px">{{ t.ebNext }}</x-import></div>
+              <h2 data-rv="" style="margin:28px 0 0;max-width:13em;font-size:clamp(36px,5.6vw,84px);font-weight:800;line-height:.98;letter-spacing:-.035em;color:var(--ink);text-wrap:balance">{{ t.nextH2 }}</h2>
+            </div>
+            <a href="index.html#pipeline" style="display:inline-flex;align-items:center;gap:12px;min-height:44px;font-size:17px;font-weight:600;text-decoration:none;border-bottom:1px solid currentColor">{{ t.pipeLink }}<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+          </div>
+          <ol style="list-style:none;margin:clamp(40px,6vw,88px) 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));gap:40px 24px">
+            <sc-for list="{{ nexts }}" as="nx" hint-placeholder-count="3">
+              <li data-rv="" style="--d:{{ nx.d }};display:flex;flex-direction:column;gap:16px;padding-top:20px;border-top:2px solid {{ nx.bd }}">
+                <span style="display:flex;align-items:center;justify-content:space-between;gap:12px"><span style="font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;color:var(--grey-600)">{{ nx.n }}</span><span style="display:inline-flex;align-items:center;gap:8px;height:28px;padding:0 12px;border-radius:999px;background:{{ nx.tbg }};font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:{{ nx.tc }}"><i style="width:6px;height:6px;border-radius:50%;background:{{ nx.dot }}"></i>{{ nx.s }}</span></span>
+                <h3 style="margin:0;font-size:clamp(24px,2.2vw,31px);font-weight:700;line-height:1.1;letter-spacing:-.025em;color:var(--ink)">{{ nx.h }}</h3>
+                <p style="margin:0;font-size:16px;line-height:1.6;color:var(--grey-700);text-wrap:pretty">{{ nx.p }}</p>
+              </li>
+            </sc-for>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 8 CTA -->
+      <section data-tone="dark" style="position:relative;overflow:hidden;background:var(--indigo-700);color:#fff;padding:clamp(72px,9vw,136px) 0">
+        <img src="assets/texture-b.jpg" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35;mix-blend-mode:screen;pointer-events:none"></img>
+        <div style="position:relative;max-width:1280px;margin:0 auto;padding:0 clamp(20px,4.4vw,64px);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px 64px">
+          <div data-rv="" style="flex:1 1 420px;max-width:760px">
+            <h2 style="margin:0;font-size:clamp(36px,5vw,76px);font-weight:300;line-height:1;letter-spacing:-.04em;color:#fff;text-wrap:balance">{{ t.ctaH2 }}</h2>
+            <p style="margin:24px 0 0;max-width:30em;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:var(--indigo-100)">{{ t.ctaP }}</p>
+          </div>
+          <div data-rv="" style="--d:160ms;flex:0 1 auto;display:flex;flex-wrap:wrap;gap:12px;flex-direction:{{ L.ctaDir }};width:{{ L.ctaW }}">
+            <x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Button" variant="inverse" size="lg" as="a" href="index.html#contato" full-width="{{ mob }}" hint-size="200px,52px">{{ t.contact }}</x-import>
+            <x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Button" variant="ghost" size="lg" as="a" href="index.html#publicacoes" full-width="{{ mob }}" dc-props="{{ ghostDark }}" hint-size="180px,52px">{{ t.pubs }}</x-import>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer data-tone="light" style="position:relative;background:var(--grey-100);color:var(--grey-700);padding:clamp(64px,7vw,104px) 0 32px">
+    <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,4.4vw,64px)">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:48px">
+        <div style="flex:1 1 300px;max-width:460px;display:flex;flex-direction:column;gap:24px">
+          <img src="assets/vyro-horizontal.png" alt="Vyro Biotherapeutics" style="width:168px;height:auto;display:block"></img>
+          <p style="margin:0;font-size:16px;line-height:1.6">{{ t.ftBp }}</p>
+        </div>
+        <form onSubmit="{{ newsSubmit }}" style="flex:1 1 300px;max-width:520px;display:flex;flex-direction:column;gap:14px">
+          <label for="news-foot" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-700)">Newsletter</label>
+          <div style="display:flex;gap:8px;padding:6px;background:var(--white);border:1px solid var(--grey-300);border-radius:999px">
+            <input id="news-foot" type="email" required="" placeholder="{{ t.emailPh }}" autocomplete="email" style="flex:1;min-width:0;appearance:none;border:0;background:transparent;padding:0 16px;font:400 16px var(--font-body);color:var(--ink);outline:none;border-radius:999px"></input>
+            <x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Button" type="submit" variant="primary" size="sm" hint-size="110px,36px">{{ newsLabel }}</x-import>
+          </div>
+          <p style="margin:0;font-size:13px;color:var(--grey-600)">{{ t.ftNl }}</p>
+        </form>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));gap:40px 24px;margin-top:clamp(48px,6vw,80px);padding-top:clamp(40px,4vw,56px);border-top:1px solid var(--grey-300)">
+        <nav aria-label="{{ t.ftC1 }}" style="display:flex;flex-direction:column;gap:14px"><span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-600)">{{ t.ftC1 }}</span><a href="index.html#historia" style="font-size:16px;text-decoration:none">{{ t.ftAbout }}</a><a href="index.html#equipe" style="font-size:16px;text-decoration:none">{{ t.team }}</a><a href="index.html#contato" style="font-size:16px;text-decoration:none">{{ t.ftCareers }}</a></nav>
+        <nav aria-label="{{ t.ftC2 }}" style="display:flex;flex-direction:column;gap:14px"><span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-600)">{{ t.ftC2 }}</span><a href="tecnologia.html" style="font-size:16px;text-decoration:none">{{ t.tech }}</a><a href="index.html#pipeline" style="font-size:16px;text-decoration:none">Pipeline</a><a href="index.html#publicacoes" style="font-size:16px;text-decoration:none">{{ t.pubs }}</a></nav>
+        <nav aria-label="{{ t.ftC4 }}" style="display:flex;flex-direction:column;gap:14px"><span style="font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-600)">{{ t.ftC4 }}</span><div style="display:flex;gap:12px"><a href="#" aria-label="LinkedIn" style="width:48px;height:48px;border-radius:50%;border:1px solid var(--grey-300);display:grid;place-items:center;color:var(--indigo-700);text-decoration:none" style-hover="border-color:var(--indigo-700);background:var(--indigo-50)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="#" aria-label="Instagram" style="width:48px;height:48px;border-radius:50%;border:1px solid var(--grey-300);display:grid;place-items:center;color:var(--indigo-700);text-decoration:none" style-hover="border-color:var(--indigo-700);background:var(--indigo-50)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><path d="M17.5 6.5h.01"></path></svg></a></div></nav>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:24px;margin-top:clamp(48px,6vw,80px);padding-top:24px;border-top:1px solid var(--grey-300)">
+        <p style="flex:1 1 300px;max-width:720px;margin:0;display:flex;gap:10px;font-size:13px;line-height:1.55;color:var(--grey-600)"><i style="flex:none;width:6px;height:6px;margin-top:7px;border-radius:50%;background:var(--signal-amber)"></i><span>{{ t.ftDisc }}</span></p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px 24px;font-size:13px;color:var(--grey-600)"><span>© 2026 Vyro Biotherapeutics</span><a href="#" style="text-decoration:none">{{ t.ftPriv }}</a><a href="#" style="text-decoration:none">{{ t.ftTerms }}</a></div>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;annotations&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;label&quot;:&quot;Anotações de movimento&quot;},&quot;reduceMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;label&quot;:&quot;Simular prefers-reduced-motion&quot;}}">
+class Component extends DCLogic {
+  static TX = {
+    pt: {
+      homeAria: 'Vyro Biotherapeutics · página inicial', navMain: 'Principal', disc: 'Descubra', tech: 'Tecnologia', pubs: 'Publicações', team: 'Equipe', news: 'Notícias', contact: 'Fale com a Vyro', menu: 'Menu', close: 'Fechar',
+      seal: 'Estágio pré-clínico', ebTech: 'Tecnologia', h1a: 'O vírus certo', h1b: 'no lugar certo.',
+      heroSup: 'Como um vírus que o Brasil aprendeu a temer se tornou a base de uma plataforma experimental contra tumores do sistema nervoso central, e o que a pesquisa já mostrou até aqui.',
+      tocAria: 'Seções desta página', tocLabel: 'Nesta página', toc: ['Abertura', 'Como funciona', 'oZIKV', 'ZIKVV', 'Dados de pesquisa', 'Próximos passos'],
+      ebOpen: 'Abertura',
+      open1: 'Vírus oncolíticos são vírus capazes de infectar e destruir células tumorais. A Vyro trabalha com o vírus zika, que tem afinidade natural pelas células-tronco do sistema nervoso. A mesma afinidade que, em 2015, causou microcefalia em bebês, hoje se volta contra tumores cerebrais.',
+      open2: 'A diferença está no alvo. Tumores como o meduloblastoma e o glioblastoma guardam características das células-tronco neurais, e é nelas que o vírus age. Os resultados até aqui vêm de estudos pré-clínicos. O próximo passo é mostrar, com produção controlada e estudos regulatórios, que a plataforma pode chegar com segurança a seres humanos.',
+      ebSteps: 'Como funciona', stepsH2: 'Em quatro etapas', step: 'Etapa',
+      steps: [
+        ['Chega ao sistema nervoso central', 'A barreira hematoencefálica protege o cérebro e bloqueia a maior parte dos medicamentos. É um dos principais obstáculos no tratamento de tumores cerebrais.', 'O vírus zika evoluiu para alcançar o sistema nervoso. A plataforma aproveita essa capacidade natural em vez de tentar contorná-la.', 'Imagem ilustrativa · rede de células do sistema nervoso'],
+        ['Reconhece a célula tumoral', 'Células de tumores embrionários do sistema nervoso central compartilham características com as células-tronco neurais, o alvo preferencial do vírus.', 'Nos estudos publicados, o vírus infectou e destruiu essas células, inclusive as células-tronco tumorais, associadas a recidivas e à resistência ao tratamento.', 'Imagem ilustrativa · partículas virais sobre uma célula tumoral'],
+        ['Preserva o tecido saudável', 'Nos modelos estudados, neurônios maduros e outras células sadias do cérebro se mostraram pouco suscetíveis à infecção.', 'A versão geneticamente modificada vai além: sequências sensíveis a microRNAs presentes em células normais limitam a replicação do vírus fora do tumor.', 'Imagem ilustrativa · aglomerado de células'],
+        ['Ativa a resposta imune', 'Ao destruir a célula tumoral, a infecção expõe o tumor ao sistema imune, que passa a reconhecê-lo.', 'Em cães com tumores cerebrais espontâneos, o tratamento foi associado à redução dos tumores e a sinais de resposta imune contra o tumor.', 'Imagem ilustrativa · sinalização entre células']
+      ],
+      note: 'Resultados observados em estudos pré-clínicos, in vitro e em modelos animais. A Vyro ainda não conduziu estudos em seres humanos.',
+      l1: 'Linha 01', l2: 'Linha 02', ebPlat: 'Plataforma',
+      l1h: 'o vírus oncolítico', l1k: 'Vírus oncolítico derivado do zika · Alvo: tumores malignos do sistema nervoso central · Estágio: desenvolvimento de processo',
+      l1cap: 'Imagem ilustrativa · partícula viral junto à superfície de uma célula',
+      l1p1: 'O oZIKV é uma versão geneticamente modificada do vírus zika, desenvolvida a partir de pesquisas do Centro de Estudos do Genoma Humano e Células-Tronco da USP. É a base tecnológica da Vyro.',
+      l1p2: 'Em laboratório e em modelos animais, o vírus agiu sobre células de tumores do sistema nervoso central e poupou o tecido saudável ao redor. A modificação genética acrescenta uma camada de controle sobre onde ele pode se replicar.',
+      l1p3: 'O programa está em desenvolvimento de processo. Com apoio da FAPESP, a Vyro valida a produção do oZIKV em biorreator, etapa que antecede os estudos regulatórios exigidos antes do primeiro teste em seres humanos.',
+      feats: [['Tropismo pelo sistema nervoso', 'Afinidade natural por células com características de células-tronco neurais.'], ['Seletividade', 'Ação concentrada nas células tumorais, com neurônios maduros preservados nos modelos estudados.'], ['Controle por microRNA', 'Sequências que restringem a replicação do vírus em células normais.'], ['Resposta imune', 'A destruição do tumor o torna visível ao sistema imune.']],
+      l2h: 'o vetor viral', l2k: 'Vetor viral derivado do zika · Carga: terapias genéticas · Aplicação prevista: doenças do sistema nervoso central',
+      l2cap: 'Ilustração · estrutura molecular',
+      l2p1: 'O ZIKVV parte da mesma base do oZIKV com outro propósito: em vez de destruir células, levar material genético até o cérebro.',
+      l2p2: 'Alcançar o sistema nervoso central é justamente o que falta a muitas terapias genéticas. Como vetor, a plataforma pode transportar até lá uma carga terapêutica.',
+      l2p3: 'O programa está em estágio pré-clínico e amplia o alcance da tecnologia para além da oncologia.',
+      feats2: [['Mesma base', 'Aproveita o conhecimento acumulado com o oZIKV.'], ['Entrega no cérebro', 'Projetado para levar terapias genéticas ao sistema nervoso central.'], ['Além da oncologia', 'Abre caminho para outras doenças neurológicas.']],
+      ebData: 'Dados de pesquisa', dataH2: 'O que a pesquisa já mostrou',
+      dataIntro: 'Três estudos publicados em revistas científicas internacionais sustentam a tecnologia. Cada um respondeu a uma pergunta diferente.',
+      illus: 'Imagem ilustrativa. As figuras originais estão no artigo.', readPaper: 'Ler artigo', rowQ: 'Pergunta', rowM: 'Modelo', rowR: 'Resultado', study: 'Estudo',
+      studies: [
+        ['O vírus destrói células de tumores embrionários do sistema nervoso central', 'O vírus zika age sobre tumores do sistema nervoso central?', 'Células tumorais humanas e tumorsferas in vitro; camundongos com tumores humanos implantados.', 'O vírus infectou e destruiu células de meduloblastoma e de tumor teratoide/rabdoide atípico, inclusive células-tronco tumorais, reduziu os tumores e prolongou a sobrevida dos animais.'],
+        ['Segurança e redução de tumores em cães', 'O tratamento é seguro em animais com tumor cerebral espontâneo?', 'Cães com tumores cerebrais espontâneos em estágio avançado.', 'A aplicação foi bem tolerada e esteve associada à redução dos tumores, à melhora clínica e a sinais de ativação da resposta imune.'],
+        ['Uma versão geneticamente modificada e mais controlada', 'É possível manter a ação contra o tumor e reduzir a replicação em células normais?', 'Vírus modificado com sequências-alvo de microRNAs, avaliado em células e em modelos animais.', 'A versão modificada manteve a atividade contra tumores do sistema nervoso central, com replicação restrita em células neurais normais.']
+      ],
+      ebNext: 'Próximos passos', nextH2: 'Da bancada ao primeiro estudo clínico', pipeLink: 'Ver o pipeline completo',
+      nexts: [['Produção controlada', 'Desenvolvimento e validação do processo de produção do oZIKV em biorreator, com apoio do PIPE Fase 2 da FAPESP, em 24 meses.', 'Em andamento'], ['Estudos regulatórios', 'Estudos de segurança exigidos pelas agências reguladoras antes do primeiro teste em seres humanos.', 'Próxima etapa'], ['Fase 1', 'Primeiros estudos em seres humanos, focados em segurança e dose.', 'Depois']],
+      ctaH2: 'Pesquisa, parceria ou imprensa?', ctaP: 'Fale com a equipe da Vyro. Respondemos em até dois dias úteis.',
+      ftBp: 'Terapias experimentais para tumores malignos do sistema nervoso central, a partir de pesquisa nascida na universidade brasileira. São Paulo (BR) e Estados Unidos.',
+      ftNl: 'Uma vez por mês: avanços da pesquisa e marcos da empresa.', emailPh: 'seu@email.com', sub: 'Assinar', subd: 'Inscrito',
+      ftC1: 'Empresa', ftAbout: 'Sobre', ftCareers: 'Carreiras', ftC2: 'Ciência', ftC4: 'Redes',
+      ftDisc: 'Estágio pré-clínico: as tecnologias descritas neste site estão em pesquisa, não foram testadas em seres humanos e não estão disponíveis comercialmente.', ftPriv: 'Privacidade', ftTerms: 'Termos'
+    },
+    en: {
+      homeAria: 'Vyro Biotherapeutics · home', navMain: 'Main', disc: 'Discover', tech: 'Technology', pubs: 'Publications', team: 'Team', news: 'News', contact: 'Contact Vyro', menu: 'Menu', close: 'Close',
+      seal: 'Preclinical stage', ebTech: 'Technology', h1a: 'The right virus', h1b: 'in the right place.',
+      heroSup: 'How a virus Brazil learned to fear became the foundation of an investigational platform against central nervous system tumors, and what the research has shown so far.',
+      tocAria: 'Sections on this page', tocLabel: 'On this page', toc: ['Introduction', 'How it works', 'oZIKV', 'ZIKVV', 'Research data', 'Next steps'],
+      ebOpen: 'Introduction',
+      open1: 'Oncolytic viruses are viruses that can infect and destroy tumor cells. Vyro works with the Zika virus, which has a natural affinity for the stem cells of the nervous system. The same affinity that caused microcephaly in babies in 2015 is now turned against brain tumors.',
+      open2: 'The difference lies in the target. Tumors such as medulloblastoma and glioblastoma retain features of neural stem cells, and that is where the virus acts. The results so far come from preclinical studies. The next step is to show, through controlled manufacturing and regulatory studies, that the platform can safely reach humans.',
+      ebSteps: 'How it works', stepsH2: 'In four steps', step: 'Step',
+      steps: [
+        ['Reaches the central nervous system', 'The blood-brain barrier protects the brain and blocks most drugs. It is one of the main obstacles in treating brain tumors.', 'The Zika virus evolved to reach the nervous system. The platform uses this natural ability instead of trying to work around it.', 'Illustrative image · network of nervous system cells'],
+        ['Recognizes the tumor cell', 'Cells from embryonal central nervous system tumors share features with neural stem cells, the virus’s preferred target.', 'In the published studies, the virus infected and destroyed these cells, including tumor stem cells, which are linked to relapse and treatment resistance.', 'Illustrative image · viral particles on a tumor cell'],
+        ['Spares healthy tissue', 'In the models studied, mature neurons and other healthy brain cells proved to be poorly susceptible to infection.', 'The genetically modified version goes further: sequences sensitive to microRNAs found in normal cells limit viral replication outside the tumor.', 'Illustrative image · cell cluster'],
+        ['Activates the immune response', 'By destroying the tumor cell, the infection exposes the tumor to the immune system, which begins to recognize it.', 'In dogs with spontaneous brain tumors, treatment was associated with tumor reduction and signs of an anti-tumor immune response.', 'Illustrative image · signaling between cells']
+      ],
+      note: 'Results observed in preclinical studies, in vitro and in animal models. Vyro has not conducted studies in humans.',
+      l1: 'Line 01', l2: 'Line 02', ebPlat: 'Platform',
+      l1h: 'the oncolytic virus', l1k: 'Zika-derived oncolytic virus · Target: malignant central nervous system tumors · Stage: process development',
+      l1cap: 'Illustrative image · viral particle at a cell surface',
+      l1p1: 'oZIKV is a genetically modified version of the Zika virus, developed from research at the Human Genome and Stem Cell Research Center of the University of São Paulo. It is Vyro’s technological foundation.',
+      l1p2: 'In the lab and in animal models, the virus acted on central nervous system tumor cells and spared the surrounding healthy tissue. The genetic modification adds a layer of control over where it can replicate.',
+      l1p3: 'The program is in process development. With FAPESP support, Vyro is validating oZIKV production in a bioreactor, the step that precedes the regulatory studies required before the first test in humans.',
+      feats: [['Nervous system tropism', 'Natural affinity for cells with neural stem cell features.'], ['Selectivity', 'Action focused on tumor cells, with mature neurons spared in the models studied.'], ['microRNA control', 'Sequences that restrict viral replication in normal cells.'], ['Immune response', 'Destroying the tumor makes it visible to the immune system.']],
+      l2h: 'the viral vector', l2k: 'Zika-derived viral vector · Payload: gene therapies · Intended use: central nervous system diseases',
+      l2cap: 'Illustration · molecular structure',
+      l2p1: 'ZIKVV starts from the same foundation as oZIKV with a different purpose: instead of destroying cells, it carries genetic material to the brain.',
+      l2p2: 'Reaching the central nervous system is exactly what many gene therapies lack. As a vector, the platform can carry a therapeutic payload there.',
+      l2p3: 'The program is at preclinical stage and extends the reach of the technology beyond oncology.',
+      feats2: [['Same foundation', 'Builds on the knowledge accumulated with oZIKV.'], ['Delivery to the brain', 'Designed to carry gene therapies to the central nervous system.'], ['Beyond oncology', 'Opens the way to other neurological diseases.']],
+      ebData: 'Research data', dataH2: 'What the research has shown',
+      dataIntro: 'Three studies published in international scientific journals support the technology. Each one answered a different question.',
+      illus: 'Illustrative image. The original figures are in the paper.', readPaper: 'Read paper', rowQ: 'Question', rowM: 'Model', rowR: 'Result', study: 'Study',
+      studies: [
+        ['The virus destroys embryonal central nervous system tumor cells', 'Does the Zika virus act on central nervous system tumors?', 'Human tumor cells and tumorspheres in vitro; mice with implanted human tumors.', 'The virus infected and destroyed medulloblastoma and atypical teratoid/rhabdoid tumor cells, including tumor stem cells, reduced tumors and extended the animals’ survival.'],
+        ['Safety and tumor reduction in dogs', 'Is the treatment safe in animals with spontaneous brain tumors?', 'Dogs with advanced-stage spontaneous brain tumors.', 'The treatment was well tolerated and associated with tumor reduction, clinical improvement and signs of immune activation.'],
+        ['A genetically modified, more controlled version', 'Can the anti-tumor action be kept while replication in normal cells is reduced?', 'Virus modified with microRNA target sequences, tested in cells and animal models.', 'The modified version kept its activity against central nervous system tumors, with restricted replication in normal neural cells.']
+      ],
+      ebNext: 'Next steps', nextH2: 'From the bench to the first clinical study', pipeLink: 'See the full pipeline',
+      nexts: [['Controlled manufacturing', 'Developing and validating the oZIKV production process in a bioreactor, supported by FAPESP’s PIPE Phase 2, over 24 months.', 'In progress'], ['Regulatory studies', 'Safety studies required by regulatory agencies before the first test in humans.', 'Next'], ['Phase 1', 'First studies in humans, focused on safety and dose.', 'Later']],
+      ctaH2: 'Research, partnership or press?', ctaP: 'Talk to the Vyro team. We reply within two business days.',
+      ftBp: 'Investigational therapies for malignant central nervous system tumors, built on research born at a Brazilian public university. São Paulo (BR) and United States.',
+      ftNl: 'Once a month: research progress and company milestones.', emailPh: 'you@email.com', sub: 'Subscribe', subd: 'Subscribed',
+      ftC1: 'Company', ftAbout: 'About', ftCareers: 'Careers', ftC2: 'Science', ftC4: 'Social',
+      ftDisc: 'Preclinical stage: the technologies described on this site are under research, have not been tested in humans and are not commercially available.', ftPriv: 'Privacy', ftTerms: 'Terms'
+    }
+  };
+  static SECS = ['abertura', 'etapas', 'linha-01', 'linha-02', 'dados', 'proximos'];
+  static STEP_IMG = ['assets/tumor-a.jpg', 'assets/virus-attack.jpg', 'assets/cells-b.jpg', 'assets/tumor-b.jpg'];
+  static STUDY = [
+    { id: 'dados-a', slot: 'tec-dados-a', img: 'assets/cells-a-duotone.jpg', fit: 'cover', bg: 'var(--indigo-900)', j: 'Cancer Research', y: '2018', href: 'https://doi.org/10.1158/0008-5472.CAN-17-3201' },
+    { id: 'dados-b', slot: 'tec-dados-b', img: 'assets/lab-a.jpg', fit: 'cover', bg: 'var(--indigo-900)', j: 'Molecular Therapy', y: '2020', href: 'https://doi.org/10.1016/j.ymthe.2020.03.004' },
+    { id: 'dados-c', slot: 'tec-dados-c', img: 'assets/device-chain-b.jpg', fit: 'cover', bg: 'var(--white)', j: 'Molecular Therapy', y: '2024', href: 'https://doi.org/10.1016/j.ymthe.2024.01.006' }
+  ];
+
+  state = { w: typeof window !== 'undefined' ? window.innerWidth : 1440, lang: (() => { try { return localStorage.getItem('vyro-home-lang') || 'pt'; } catch (e) { return 'pt'; } })(), step: 0, sec: null, navDark: true, scrolled: false, menu: false, newsOk: false };
+  rootRef = React.createRef();
+
+  clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
+  isRM() { return !!(this.props.reduceMotion || this.urlRM || this.sysRM); }
+  isAnn() { return !!(this.props.annotations || this.urlAnn); }
+
+  componentDidMount() {
+    const q = new URLSearchParams(location.search), hs = location.hash || '';
+    this.urlAnn = q.get('ann') === '1' || hs.includes('ann=1'); this.urlRM = q.get('rm') === '1' || hs.includes('rm=1');
+    this.sysRM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.injectCSS(); this.applyFlags();
+    this.io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); this.io.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' });
+    this.observeNew();
+    this.mo = new MutationObserver(() => { if (this.moQ) return; this.moQ = requestAnimationFrame(() => { this.moQ = 0; this.observeNew(); }); });
+    this.mo.observe(this.rootRef.current, { childList: true, subtree: true });
+    this.onResize = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this.onResize);
+    this.onKey = e => { if (e.key === 'Escape' && this.state.menu) this.setState({ menu: false }); };
+    window.addEventListener('keydown', this.onKey);
+    document.documentElement.lang = this.state.lang === 'en' ? 'en' : 'pt-BR';
+    this.raf = requestAnimationFrame(this.tick);
+  }
+  componentDidUpdate() {
+    const p = this.props, s = this.state, v = this._prev || (this._prev = { rm: p.reduceMotion, ann: p.annotations, lang: s.lang, sec: s.sec, menu: s.menu });
+    if (v.rm !== p.reduceMotion || v.ann !== p.annotations) { v.rm = p.reduceMotion; v.ann = p.annotations; this.applyFlags(); }
+    if (v.lang !== s.lang) { v.lang = s.lang; document.documentElement.lang = s.lang === 'en' ? 'en' : 'pt-BR'; try { localStorage.setItem('vyro-home-lang', s.lang); } catch (e) {} }
+    if (v.sec !== s.sec) { v.sec = s.sec; this.centerChip(); }
+    if (v.menu !== s.menu) { v.menu = s.menu; document.documentElement.style.overflow = s.menu ? 'hidden' : ''; }
+  }
+  componentWillUnmount() {
+    cancelAnimationFrame(this.raf); window.removeEventListener('resize', this.onResize); window.removeEventListener('keydown', this.onKey);
+    [this.io, this.mo].forEach(o => o && o.disconnect()); document.documentElement.style.overflow = '';
+  }
+  observeNew() { const root = this.rootRef.current; if (root) root.querySelectorAll('[data-rv]:not(.in)').forEach(n => this.io.observe(n)); }
+  centerChip() {
+    const root = this.rootRef.current, bar = root && root.querySelector('[data-chips]'), c = bar && this.state.sec && bar.querySelector(`[data-chip="${this.state.sec}"]`);
+    if (!c) return;
+    bar.scrollTo({ left: c.offsetLeft - (bar.clientWidth - c.offsetWidth) / 2, behavior: this.isRM() ? 'auto' : 'smooth' });
+  }
+  injectCSS() {
+    if (document.getElementById('tec-motion-css')) return;
+    const s = document.createElement('style'); s.id = 'tec-motion-css';
+    const ez = 'cubic-bezier(.22,.61,.36,1)';
+    s.textContent = `
+[data-rv]{opacity:0;transform:translateY(32px);transition:opacity 900ms ${ez} var(--d,0ms),transform 1100ms ${ez} var(--d,0ms)}
+[data-rv].in{opacity:1;transform:none}
+[data-rv="fade"]{transform:none;transition:opacity 600ms ${ez} var(--d,0ms)}
+[data-rv="line"]{opacity:1;transform:none}
+[data-rv="line"]>span{display:block;transform:translateY(108%);transition:transform 1100ms ${ez} var(--d,0ms)}
+[data-rv="line"].in>span{transform:none}
+body.rm [data-rv]{transform:none!important;transition:opacity 700ms linear var(--d,0ms)}
+body.rm [data-rv="line"]{opacity:0}
+body.rm [data-rv="line"].in{opacity:1}
+body.rm [data-rv="line"]>span{transform:none!important}
+body.rm{scroll-behavior:auto}
+[data-sec]{scroll-margin-top:84px}
+@media (max-width:1179px){[data-sec]{scroll-margin-top:144px}}
+[data-chips]::-webkit-scrollbar{display:none}
+:focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px}
+body.ann [data-ann]::before{content:attr(data-ann);position:absolute;top:100px;right:clamp(12px,2vw,24px);z-index:60;max-width:380px;padding:12px 14px;border-radius:8px;background:var(--signal-amber);color:#16151a;font:500 11px/1.55 'IBM Plex Mono',monospace;white-space:normal;pointer-events:none;box-shadow:0 8px 20px rgba(20,6,56,.18)}
+`;
+    document.head.appendChild(s);
+  }
+  applyFlags() { document.body.classList.toggle('rm', this.isRM()); document.body.classList.toggle('ann', this.isAnn()); }
+
+  tick = (time) => {
+    this.raf = requestAnimationFrame(this.tick);
+    const root = this.rootRef.current; if (!root) return;
+    const vh = window.innerHeight, T = time / 1000, rm = this.isRM(), C = this.clamp.bind(this), st = this.state;
+    const hero = root.querySelector('#topo');
+    if (hero && !rm && hero.getBoundingClientRect().bottom > 0) hero.querySelectorAll('[data-breathe]').forEach(n => {
+      const s = 1.08 + 0.035 * Math.sin(T / 17) + 0.015 * Math.sin(T / 7.3 + 1);
+      n.style.transform = `translate3d(${(1.4 * Math.sin(T / 23)).toFixed(3)}%,${(1.0 * Math.sin(T / 29 + 1.3)).toFixed(3)}%,0) scale(${s.toFixed(4)})`;
+    });
+    let step = st.step;
+    const et = root.querySelector('#etapas');
+    if (et && et.offsetHeight > vh * 1.5) {
+      const r = et.getBoundingClientRect(), p = C(-r.top / Math.max(1, r.height - vh), 0, 1), s = p * 4;
+      step = Math.min(3, Math.floor(s));
+      et.querySelectorAll('[data-strail]').forEach((n, i) => { n.style.transform = `scaleX(${C(s - i, 0, 1)})`; });
+      if (!rm) et.querySelectorAll('[data-stimg]').forEach(n => { n.style.transform = `scale(${(1 + 0.1 * p).toFixed(4)})`; });
+    }
+    let sec = null;
+    for (const id of Component.SECS) { const n = root.querySelector('#' + id); if (n && n.getBoundingClientRect().top <= vh * 0.4) sec = id; }
+    const end = root.querySelector('footer'); if (end && end.getBoundingClientRect().top < vh * 0.4) sec = null;
+    let tone = 'dark';
+    for (const n of root.querySelectorAll('[data-tone]')) { const b = n.getBoundingClientRect(); if (b.top <= 42 && b.bottom > 42) { tone = n.dataset.tone; break; } }
+    const navDark = tone === 'dark', scrolled = window.scrollY > 24;
+    if (step !== st.step || sec !== st.sec || navDark !== st.navDark || scrolled !== st.scrolled) this.setState({ step, sec, navDark, scrolled });
+  };
+
+  renderVals() {
+    const st = this.state, w = st.w, m = w < 760, side = w >= 1180, stack = w < 900, en = st.lang === 'en', t = Component.TX[en ? 'en' : 'pt'];
+    const L = {
+      gridBg: m ? 'calc(100% / 4)' : 'calc(100% / 12)', logoW: m ? 'min(178px, calc(100vw - 212px))' : '178px',
+      texW: m ? '150%' : '62%', texH: m ? '90%' : '116%', texT: m ? '-12%' : '-8%', texR: m ? '-60%' : '-8%',
+      heroTop: m ? '128px' : '172px', h1: m ? '11.4vw' : 'clamp(56px, 7.4vw, 124px)',
+      navGap: m ? '10px' : '24px', langH: m ? '44px' : '36px', langW: m ? '36px' : '32px',
+      bigH: m ? 'calc((100vw - 40px) * .75)' : 'min(62vh, 640px)', bigH2: m ? 'calc(100vw - 40px)' : 'min(62vh, 600px)',
+      dlCols: m ? 'minmax(0,1fr)' : '120px minmax(0,1fr)', ctaDir: m ? 'column' : 'row', ctaW: m ? '100%' : 'auto'
+    };
+    const nd = st.navDark || st.menu;
+    const navLinks = [['index.html#filme', t.disc], ['tecnologia.html', t.tech], ['index.html#pipeline', 'Pipeline'], ['index.html#publicacoes', t.pubs], ['index.html#equipe', t.team], ['index.html#imprensa', t.news]].map(([href, label], i) => ({ href, label, cur: i === 1 ? 'page' : 'false', fw: i === 1 ? 600 : 500, bd: i === 1 ? 'currentColor' : 'transparent', dot: i === 1 ? 'block' : 'none' }));
+    const toc = Component.SECS.map((id, i) => { const on = st.sec === id; return { id, href: '#' + id, label: t.toc[i], n: '0' + (i + 1), cur: on ? 'location' : 'false', c: on ? 'var(--indigo-700)' : 'var(--grey-700)', bd: on ? 'var(--indigo-700)' : 'transparent', fw: on ? 700 : 500, mbd: on ? 'var(--indigo-700)' : 'var(--grey-300)', mbg: on ? 'var(--indigo-700)' : 'var(--white)', mc: on ? '#fff' : 'var(--ink)' }; });
+    const steps = t.steps.map((s, i) => { const on = st.step === i; return { n: '0' + (i + 1), lbl: t.step + ' 0' + (i + 1), h: s[0], p1: s[1], p2: s[2], cap: s[3], img: Component.STEP_IMG[i], slot: 'tec-etapa-' + (i + 1), io: on ? 1 : 0, o: on ? 1 : 0, y: on ? '0px' : (st.step > i ? '-24px' : '24px'), ah: on ? 'false' : 'true' }; });
+    const feat = (arr, d) => arr.map((f, i) => ({ n: '0' + (i + 1), h: f[0], p: f[1], d: (i * d) + 'ms' }));
+    const studies = Component.STUDY.map((s, i) => { const x = t.studies[i]; return Object.assign({}, s, { k: t.study + ' 0' + (i + 1), h: x[0], rows: [{ k: t.rowQ, v: x[1] }, { k: t.rowM, v: x[2] }, { k: t.rowR, v: x[3] }] }); });
+    const nexts = t.nexts.map((x, i) => ({ n: '0' + (i + 1), h: x[0], p: x[1], s: x[2], d: (i * 120) + 'ms', bd: i === 0 ? 'var(--indigo-700)' : 'var(--grey-300)', tbg: i === 0 ? 'var(--indigo-50)' : 'var(--grey-100)', tc: i === 0 ? 'var(--indigo-700)' : 'var(--grey-700)', dot: i === 0 ? 'var(--signal-teal)' : 'var(--grey-400)' }));
+    return {
+      rootRef: this.rootRef, L, t, mob: m, desk: !m, navFull: w >= 1080, navMenu: w < 1080, side, chips: !side, pin: !stack, stack, navCta: w >= 1200, langAttr: en ? 'en' : 'pt-BR',
+      navLinks, toc, steps, stepLabel: '0' + (st.step + 1), stepCap: t.steps[st.step][3],
+      feats: feat(t.feats, 120), feats2: feat(t.feats2, 120), studies, nexts,
+      navBg: st.menu ? 'transparent' : (!st.scrolled && nd ? 'transparent' : (nd ? 'rgba(20,6,56,0.72)' : 'rgba(255,255,255,0.84)')),
+      navBlur: st.scrolled && !st.menu ? 'blur(14px)' : 'none', navInk: nd ? '#fff' : 'var(--ink)',
+      logoW: nd ? 1 : 0, logoC: nd ? 0 : 1, navBtn: nd ? 'inverse' : 'primary',
+      langBd: nd ? 'rgba(255,255,255,.35)' : 'var(--grey-300)', isPT: en ? 'false' : 'true', isEN: en ? 'true' : 'false',
+      ptBg: !en ? (nd ? '#fff' : 'var(--indigo-700)') : 'transparent', ptFg: !en ? (nd ? 'var(--indigo-900)' : '#fff') : 'inherit',
+      enBg: en ? (nd ? '#fff' : 'var(--indigo-700)') : 'transparent', enFg: en ? (nd ? 'var(--indigo-900)' : '#fff') : 'inherit',
+      setPT: () => this.setState({ lang: 'pt' }), setEN: () => this.setState({ lang: 'en' }),
+      menu: st.menu, menuA: st.menu ? 'true' : 'false', menuLabel: st.menu ? t.close : t.menu,
+      toggleMenu: () => this.setState(s => ({ menu: !s.menu })), closeMenu: () => this.setState({ menu: false }),
+      ghostDark: { style: { color: '#fff', border: '1px solid rgba(255,255,255,.45)' } },
+      newsLabel: st.newsOk ? t.subd : t.sub, newsSubmit: e => { e.preventDefault(); this.setState({ newsOk: true }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

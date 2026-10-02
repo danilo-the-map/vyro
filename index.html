@@ -21,21 +21,22 @@
     body{margin:0;background:#0c0326}
     a{color:var(--indigo-700)}
     a:hover{color:var(--indigo-500)}
+    image-slot[src]::part(ring){display:none}
   </style>
 </helmet>
 <div ref="{{ rootRef }}" lang="{{ langAttr }}" style="font-family:var(--font-body);color:var(--ink);background:var(--white);overflow-x:clip">
 
   <header style="position:fixed;top:0;left:0;right:0;z-index:100;height:84px;background:{{ navBg }};backdrop-filter:{{ navBlur }};-webkit-backdrop-filter:{{ navBlur }};color:{{ navInk }};opacity:{{ navO }};pointer-events:{{ navPE }};transition:background 240ms var(--ease-standard), color 240ms var(--ease-standard), opacity 320ms var(--ease-standard)">
     <div style="max-width:1440px;height:100%;margin:0 auto;padding:0 clamp(20px,4.4vw,64px);display:flex;align-items:center;justify-content:space-between;gap:20px">
-      <a href="#topo" aria-label="Vyro Biotherapeutics" style="position:relative;display:block;width:178px;height:40px;flex:none">
+      <a href="#topo" aria-label="Vyro Biotherapeutics" style="position:relative;display:block;width:{{ L.logoW }};height:54px;flex:none">
         <img src="assets/vyro-horizontal-white.png" alt="Vyro Biotherapeutics" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:left center;opacity:{{ logoW }};transition:opacity 240ms"></img>
         <img src="assets/vyro-horizontal.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:left center;opacity:{{ logoC }};transition:opacity 240ms"></img>
       </a>
       <div style="display:flex;align-items:center;gap:{{ L.navGap }}">
-        <sc-if value="{{ desk }}" hint-placeholder-val="{{ true }}">
+        <sc-if value="{{ navFull }}" hint-placeholder-val="{{ true }}">
           <nav aria-label="Principal" style="display:flex;align-items:center;gap:clamp(16px,1.9vw,32px)">
             <a href="#filme" style="color:inherit;font-size:15px;font-weight:500;text-decoration:none;white-space:nowrap"><span data-i18n="nav.disc">Descubra</span></a>
-            <a href="#tecnologia" style="color:inherit;font-size:15px;font-weight:500;text-decoration:none;white-space:nowrap"><span data-i18n="nav.tech">Tecnologia</span></a>
+            <a href="tecnologia.html" style="color:inherit;font-size:15px;font-weight:500;text-decoration:none;white-space:nowrap"><span data-i18n="nav.tech">Tecnologia</span></a>
             <a href="#pipeline" style="color:inherit;font-size:15px;font-weight:500;text-decoration:none;white-space:nowrap"><span data-i18n="nav.pipe">Pipeline</span></a>
             <a href="#publicacoes" style="color:inherit;font-size:15px;font-weight:500;text-decoration:none;white-space:nowrap"><span data-i18n="nav.pubs">Publicações</span></a>
             <a href="#equipe" style="color:inherit;font-size:15px;font-weight:500;text-decoration:none;white-space:nowrap"><span data-i18n="nav.team">Equipe</span></a>
@@ -49,7 +50,7 @@
         <sc-if value="{{ navCta }}" hint-placeholder-val="{{ true }}">
           <x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Button" variant="{{ navBtn }}" size="sm" as="a" href="#contato" hint-size="140px,36px"><span data-i18n="cta.contact">Fale com a Vyro</span></x-import>
         </sc-if>
-        <sc-if value="{{ mob }}" hint-placeholder-val="{{ false }}">
+        <sc-if value="{{ navMenu }}" hint-placeholder-val="{{ false }}">
           <button type="button" onClick="{{ toggleMenu }}" aria-expanded="{{ menu }}" style="appearance:none;background:none;border:1px solid currentColor;color:inherit;border-radius:999px;height:44px;padding:0 18px;font:600 14px var(--font-display);letter-spacing:.04em;cursor:pointer">{{ menuLabel }}</button>
         </sc-if>
       </div>
@@ -59,7 +60,7 @@
     <div style="position:fixed;inset:0;z-index:99;background:var(--indigo-900);padding:120px 20px 40px;display:flex;flex-direction:column;justify-content:space-between">
       <nav aria-label="Menu" style="display:flex;flex-direction:column;gap:4px">
         <a href="#filme" onClick="{{ toggleMenu }}" style="color:#fff;font-size:40px;font-weight:700;letter-spacing:-.03em;text-decoration:none"><span data-i18n="nav.disc">Descubra</span></a>
-        <a href="#tecnologia" onClick="{{ toggleMenu }}" style="color:#fff;font-size:40px;font-weight:700;letter-spacing:-.03em;text-decoration:none"><span data-i18n="nav.tech">Tecnologia</span></a>
+        <a href="tecnologia.html" onClick="{{ toggleMenu }}" style="color:#fff;font-size:40px;font-weight:700;letter-spacing:-.03em;text-decoration:none"><span data-i18n="nav.tech">Tecnologia</span></a>
         <a href="#pipeline" onClick="{{ toggleMenu }}" style="color:#fff;font-size:40px;font-weight:700;letter-spacing:-.03em;text-decoration:none"><span data-i18n="nav.pipe">Pipeline</span></a>
         <a href="#publicacoes" onClick="{{ toggleMenu }}" style="color:#fff;font-size:40px;font-weight:700;letter-spacing:-.03em;text-decoration:none"><span data-i18n="nav.pubs">Publicações</span></a>
         <a href="#equipe" onClick="{{ toggleMenu }}" style="color:#fff;font-size:40px;font-weight:700;letter-spacing:-.03em;text-decoration:none"><span data-i18n="nav.team">Equipe</span></a>
@@ -71,11 +72,14 @@
 
   <div data-player="" role="dialog" aria-modal="true" aria-label="{{ t.film }}" aria-hidden="{{ pAh }}" style="position:fixed;inset:0;z-index:300;background:#000;display:{{ pDisp }};cursor:{{ pCursor }}">
     <sc-if value="{{ playerLoaded }}" hint-placeholder-val="{{ false }}">
-      <div class="video-frame" style="position:absolute;inset:0">
-        <iframe src="https://fast.wistia.net/embed/iframe/39jobj362k?videoFoam=true&amp;playbar=false&amp;smallPlayButton=false&amp;fullscreenButton=false&amp;playButton=false&amp;controlsVisibleOnLoad=false&amp;silentAutoPlay=false&amp;copyLinkAndThumbnailEnabled=false&amp;playerColor=270f70&amp;autoPlay=true" title="Vyro · De inimigo a aliado" allow="autoplay; fullscreen" allowFullScreen="{{ true }}" frameBorder="0" scrolling="no" style="width:100%;height:100%;border:0"></iframe>
+      <div class="video-frame" style="position:absolute;inset:0;display:grid;place-items:center">
+        <div style="position:relative;width:min(100vw, calc(100vh * 16 / 9));aspect-ratio:16 / 9">
+        <iframe class="wistia_embed" name="wistia_embed" src="https://fast.wistia.net/embed/iframe/39jobj362k?videoFoam=false&amp;fitStrategy=contain&amp;playbar=false&amp;smallPlayButton=false&amp;fullscreenButton=false&amp;playButton=false&amp;controlsVisibleOnLoad=false&amp;silentAutoPlay=false&amp;copyLinkAndThumbnailEnabled=false&amp;playerColor=270f70&amp;autoPlay=true" title="Vyro · De inimigo a herói" allow="autoplay; fullscreen" allowFullScreen="{{ true }}" frameBorder="0" scrolling="no" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+        </div>
       </div>
     </sc-if>
     <div onMouseMove="{{ pMove }}" onClick="{{ pTogglePlay }}" style="position:absolute;inset:0"></div>
+    <div data-rotate="" role="status" aria-hidden="{{ rotAh }}" style="position:absolute;left:50%;top:calc(50% - 28.125vw - 24px);transform:translate(-50%,-100%);display:flex;align-items:center;gap:12px;padding:10px 16px 10px 12px;border-radius:999px;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;white-space:nowrap;pointer-events:none;opacity:{{ rotO }};transition:opacity 480ms var(--ease-standard)"><svg data-rotate-icon="" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"></rect><path d="M11 18h2"></path></svg><span style="font-size:14px;font-weight:500;line-height:1.3">{{ t.rotate }}</span></div>
     <div onMouseMove="{{ pMove }}" style="position:absolute;inset:0;pointer-events:none;opacity:{{ ctrlO }};transition:opacity 480ms var(--ease-standard)">
       <button type="button" onClick="{{ closePlayer }}" aria-label="{{ t.close }}" style="pointer-events:auto;position:absolute;top:clamp(16px,2.4vw,32px);right:clamp(16px,2.4vw,32px);width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(0,0,0,.35);color:#fff;display:grid;place-items:center;cursor:pointer" style-hover="background:rgba(255,255,255,.12)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
       <div style="pointer-events:auto;position:absolute;left:0;right:0;bottom:0;padding:48px clamp(16px,2.4vw,32px) clamp(16px,2.4vw,28px);background:linear-gradient(to top, rgba(0,0,0,.7), rgba(0,0,0,0));display:flex;align-items:center;gap:clamp(8px,1.2vw,16px);color:#fff">
@@ -133,13 +137,13 @@
       <div data-rv="" style="grid-area:sup;--d:620ms;align-self:start;display:flex;flex-direction:column;gap:28px;max-width:400px">
         <p data-i18n="hero.sup" style="margin:0;font-size:clamp(17px,1.35vw,19px);line-height:1.6;color:var(--indigo-100)">A Vyro desenvolve terapias experimentais para tumores malignos do sistema nervoso central, a partir de pesquisa do Zika Vírus.</p>
         <div style="display:flex;flex-wrap:wrap;gap:12px;flex-direction:{{ L.ctaDir }}">
-          <x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Button" variant="inverse" size="md" as="a" href="#tecnologia" full-width="{{ mob }}" hint-size="210px,44px"><span data-i18n="cta.tech">Conheça a tecnologia</span></x-import>
+          <x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Button" variant="inverse" size="md" as="a" href="tecnologia.html" full-width="{{ mob }}" hint-size="210px,44px"><span data-i18n="cta.tech">Conheça a tecnologia</span></x-import>
           <x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Button" variant="ghost" size="md" as="a" href="#contato" full-width="{{ mob }}" dc-props="{{ ghostDark }}" hint-size="170px,44px"><span data-i18n="cta.contact">Fale com a Vyro</span></x-import>
         </div>
       </div>
       <h1 style="grid-area:h;align-self:end;margin:0;font-family:var(--font-display);font-weight:800;font-size:{{ L.heroH1 }};line-height:.9;letter-spacing:-.05em;color:#fff">
-        <span data-rv="line" style="display:block;overflow:hidden;padding:.14em 0 .24em;margin:-.14em 0 -.2em;--d:80ms"><span data-i18n="hero.h1a">De inimigo</span></span>
-        <span data-rv="line" style="display:block;overflow:hidden;padding:.14em 0 .24em;margin:-.14em 0 -.1em;--d:220ms"><span data-i18n="hero.h1b">a herói.</span></span>
+        <span data-rv="line" style="display:block;overflow:hidden;padding:.14em 0 .32em;margin:-.14em 0 -.28em;--d:80ms"><span data-i18n="hero.h1a">De inimigo</span></span>
+        <span data-rv="line" style="display:block;overflow:hidden;padding:.14em 0 .32em;margin:-.14em 0 -.18em;--d:220ms"><span data-i18n="hero.h1b">a herói.</span></span>
       </h1>
       <div style="grid-area:bar;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding-top:clamp(20px,3vw,40px)">
         <a href="#filme" aria-label="{{ t.scroll }}" style="display:flex;align-items:flex-end;gap:16px;color:var(--indigo-200);text-decoration:none">
@@ -172,7 +176,7 @@
           <h2 data-vt="" style="margin:0;max-width:11em;font-size:{{ L.vH2 }};font-weight:800;line-height:.95;letter-spacing:-.045em;color:#fff">
             <span data-vline="" style="display:block;overflow:hidden;padding-top:.1em;margin-top:-.1em;--d:0ms"><span data-i18n="film.h2">O vírus que o Brasil aprendeu a temer.</span></span>
           </h2>
-          <p data-vt="" style="margin:0;max-width:420px;font-size:clamp(17px,1.35vw,19px);line-height:1.55;color:var(--indigo-100)"><span data-vline="" style="display:block;overflow:hidden;--d:220ms"><span data-i18n="film.sup">Assista ao vídeo e descubra como a Vyro está transformando o flagelo do Zika Vírus em tratamentos revolucionários.</span></span></p>
+          <p data-vt="" style="margin:0;max-width:420px;font-size:clamp(17px,1.35vw,19px);line-height:1.55;color:var(--indigo-100)"><span data-vline="" style="display:block;overflow:hidden;--d:220ms"><span data-i18n="film.sup">Três minutos sobre como ele está sendo transformado.</span></span></p>
         </div>
       </div>
     </div>
@@ -275,7 +279,7 @@
       </div>
       <h2 data-rv="" data-i18n="plat.h2" style="margin:28px 0 0;max-width:12em;font-size:clamp(40px,5.6vw,84px);font-weight:800;line-height:.98;letter-spacing:-.035em;color:var(--ink)">Duas plataformas, uma mesma base</h2>
       <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:24px;margin-top:clamp(48px,6vw,96px)">
-        <a href="#pipeline" data-rv="" onMouseEnter="{{ hovA }}" onMouseLeave="{{ hovOff }}" onFocus="{{ hovA }}" onBlur="{{ hovOff }}" onClick="{{ tapA }}" style="flex:7 1 560px;position:relative;min-height:{{ L.tA }};display:flex;flex-direction:column;justify-content:space-between;gap:48px;padding:clamp(28px,3.4vw,52px);border-radius:var(--radius-xl);overflow:hidden;background:var(--grey-50);border:1px solid var(--grey-200);text-decoration:none;color:{{ A.c }};transition:color 480ms var(--ease-standard)">
+        <a href="tecnologia.html#linha-01" data-rv="" onMouseEnter="{{ hovA }}" onMouseLeave="{{ hovOff }}" onFocus="{{ hovA }}" onBlur="{{ hovOff }}" onClick="{{ tapA }}" style="flex:7 1 560px;position:relative;min-height:{{ L.tA }};display:flex;flex-direction:column;justify-content:space-between;gap:48px;padding:clamp(28px,3.4vw,52px);border-radius:var(--radius-xl);overflow:hidden;background:var(--grey-50);border:1px solid var(--grey-200);text-decoration:none;color:{{ A.c }};transition:color 480ms var(--ease-standard)">
           <span aria-hidden="true" style="position:absolute;inset:0;background:var(--indigo-700);transform:{{ A.p }};transform-origin:bottom;transition:transform 640ms var(--ease-standard)"></span>
           <img src="assets/tumor-a.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;mix-blend-mode:luminosity;opacity:{{ A.i }};transition:opacity 640ms var(--ease-standard)"></img>
           <span style="position:relative;display:flex;justify-content:space-between;align-items:center">
@@ -288,7 +292,7 @@
             <span data-i18n="plat.a.d" style="max-width:34em;font-size:clamp(16px,1.3vw,18px);line-height:1.6;color:{{ A.d }};transition:color 480ms">Versão geneticamente modificada do vírus zika, desenvolvida para agir sobre células tumorais do sistema nervoso central. É a base tecnológica da empresa e concentra a maior parte da pesquisa pré-clínica.</span>
           </span>
         </a>
-        <a href="#pipeline" data-rv="" onMouseEnter="{{ hovB }}" onMouseLeave="{{ hovOff }}" onFocus="{{ hovB }}" onBlur="{{ hovOff }}" onClick="{{ tapB }}" style="--d:160ms;flex:5 1 400px;margin-top:{{ L.bOff }};position:relative;min-height:{{ L.tB }};display:flex;flex-direction:column;justify-content:space-between;gap:48px;padding:clamp(28px,3.4vw,52px);border-radius:var(--radius-xl);overflow:hidden;background:var(--grey-50);border:1px solid var(--grey-200);text-decoration:none;color:{{ B.c }};transition:color 480ms var(--ease-standard)">
+        <a href="tecnologia.html#linha-02" data-rv="" onMouseEnter="{{ hovB }}" onMouseLeave="{{ hovOff }}" onFocus="{{ hovB }}" onBlur="{{ hovOff }}" onClick="{{ tapB }}" style="--d:160ms;flex:5 1 400px;margin-top:{{ L.bOff }};position:relative;min-height:{{ L.tB }};display:flex;flex-direction:column;justify-content:space-between;gap:48px;padding:clamp(28px,3.4vw,52px);border-radius:var(--radius-xl);overflow:hidden;background:var(--grey-50);border:1px solid var(--grey-200);text-decoration:none;color:{{ B.c }};transition:color 480ms var(--ease-standard)">
           <span aria-hidden="true" style="position:absolute;inset:0;background:var(--indigo-700);transform:{{ B.p }};transform-origin:bottom;transition:transform 640ms var(--ease-standard)"></span>
           <img src="assets/virus-attack.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;mix-blend-mode:luminosity;opacity:{{ B.i }};transition:opacity 640ms var(--ease-standard)"></img>
           <span style="position:relative;display:flex;justify-content:space-between;align-items:center">
@@ -457,7 +461,7 @@
       <div data-scroller="" style="display:flex;gap:{{ L.lg }};margin-top:clamp(48px,6vw,96px);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:8px">
         <figure data-rv="" onMouseEnter="{{ lh0 }}" onMouseLeave="{{ lhOff }}" style="--d:0ms;flex:0 0 {{ L.pw }};margin:0;margin-top:{{ P0.off }};scroll-snap-align:start">
           <div style="position:relative;aspect-ratio:3 / 4;border-radius:var(--radius-lg);overflow:hidden;background:var(--indigo-900)">
-            <div style="position:absolute;inset:0;transform:scale({{ P0.s }});transition:transform 900ms var(--ease-standard)"><image-slot id="lider-luiz" shape="rect" src="assets/cells-a-duotone.jpg" placeholder="Retrato editorial · Luiz Caires" style="display:block;width:100%;height:100%"></image-slot></div>
+            <div style="position:absolute;inset:0;transform:scale({{ P0.s }});transition:transform 900ms var(--ease-standard)"><span aria-hidden="true" style="position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(90% 70% at 50% 30%, var(--indigo-500) 0%, var(--indigo-800) 70%);font-family:var(--font-display);font-size:clamp(56px,6vw,96px);font-weight:800;letter-spacing:-.04em;color:rgba(255,255,255,.18)">LC</span><img data-portrait="" src="assets/pessoas/luiz-caires.jpg" alt="Luiz Caires" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;filter:grayscale(1) contrast(1.06) brightness(1.03)"></img></div>
             <div aria-hidden="true" style="position:absolute;inset:0;background:var(--indigo-700);mix-blend-mode:color;pointer-events:none"></div>
             <div style="position:absolute;left:0;right:0;bottom:0;padding:48px 20px 20px;background:linear-gradient(to top, rgba(20,6,56,.92), rgba(20,6,56,0));color:#fff;opacity:{{ P0.o }};transform:translateY({{ P0.y }});transition:opacity 240ms var(--ease-standard), transform 240ms var(--ease-standard);pointer-events:none"><p data-i18n="lead.c1" style="margin:0;font-size:15px;line-height:1.45">Biólogo, PhD. Participou dos estudos que deram origem à tecnologia.</p></div>
           </div>
@@ -465,7 +469,7 @@
         </figure>
         <figure data-rv="" onMouseEnter="{{ lh1 }}" onMouseLeave="{{ lhOff }}" style="--d:120ms;flex:0 0 {{ L.pw }};margin:0;margin-top:{{ P1.off }};scroll-snap-align:start">
           <div style="position:relative;aspect-ratio:3 / 4;border-radius:var(--radius-lg);overflow:hidden;background:var(--indigo-900)">
-            <div style="position:absolute;inset:0;transform:scale({{ P1.s }});transition:transform 900ms var(--ease-standard)"><image-slot id="lider-mayana" shape="rect" src="assets/tumor-b.jpg" placeholder="Retrato editorial · Mayana Zatz" style="display:block;width:100%;height:100%"></image-slot></div>
+            <div style="position:absolute;inset:0;transform:scale({{ P1.s }});transition:transform 900ms var(--ease-standard)"><span aria-hidden="true" style="position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(90% 70% at 50% 30%, var(--indigo-500) 0%, var(--indigo-800) 70%);font-family:var(--font-display);font-size:clamp(56px,6vw,96px);font-weight:800;letter-spacing:-.04em;color:rgba(255,255,255,.18)">MZ</span><img data-portrait="" src="assets/pessoas/mayana-zatz.jpg" alt="Mayana Zatz" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;filter:grayscale(1) contrast(1.06) brightness(1.03)"></img></div>
             <div aria-hidden="true" style="position:absolute;inset:0;background:var(--indigo-700);mix-blend-mode:color;pointer-events:none"></div>
             <div style="position:absolute;left:0;right:0;bottom:0;padding:48px 20px 20px;background:linear-gradient(to top, rgba(20,6,56,.92), rgba(20,6,56,0));color:#fff;opacity:{{ P1.o }};transform:translateY({{ P1.y }});transition:opacity 240ms var(--ease-standard), transform 240ms var(--ease-standard);pointer-events:none"><p data-i18n="lead.c2" style="margin:0;font-size:15px;line-height:1.45">Geneticista, professora do IB-USP e coordenadora do CEGH-CEL.</p></div>
           </div>
@@ -473,7 +477,7 @@
         </figure>
         <figure data-rv="" onMouseEnter="{{ lh2 }}" onMouseLeave="{{ lhOff }}" style="--d:240ms;flex:0 0 {{ L.pw }};margin:0;margin-top:{{ P2.off }};scroll-snap-align:start">
           <div style="position:relative;aspect-ratio:3 / 4;border-radius:var(--radius-lg);overflow:hidden;background:var(--indigo-900)">
-            <div style="position:absolute;inset:0;transform:scale({{ P2.s }});transition:transform 900ms var(--ease-standard)"><image-slot id="lider-oswaldo" shape="rect" src="assets/virus-b.jpg" placeholder="Retrato editorial · Oswaldo Keith Okamoto" style="display:block;width:100%;height:100%"></image-slot></div>
+            <div style="position:absolute;inset:0;transform:scale({{ P2.s }});transition:transform 900ms var(--ease-standard)"><span aria-hidden="true" style="position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(90% 70% at 50% 30%, var(--indigo-500) 0%, var(--indigo-800) 70%);font-family:var(--font-display);font-size:clamp(56px,6vw,96px);font-weight:800;letter-spacing:-.04em;color:rgba(255,255,255,.18)">KO</span><img data-portrait="" src="assets/pessoas/oswaldo-okamoto.jpg" alt="Oswaldo Keith Okamoto" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;filter:grayscale(1) contrast(1.06) brightness(1.03)"></img></div>
             <div aria-hidden="true" style="position:absolute;inset:0;background:var(--indigo-700);mix-blend-mode:color;pointer-events:none"></div>
             <div style="position:absolute;left:0;right:0;bottom:0;padding:48px 20px 20px;background:linear-gradient(to top, rgba(20,6,56,.92), rgba(20,6,56,0));color:#fff;opacity:{{ P2.o }};transform:translateY({{ P2.y }});transition:opacity 240ms var(--ease-standard), transform 240ms var(--ease-standard);pointer-events:none"><p data-i18n="lead.c3" style="margin:0;font-size:15px;line-height:1.45">Professor do IB-USP, coautor das publicações que fundaram a pesquisa.</p></div>
           </div>
@@ -481,7 +485,7 @@
         </figure>
         <figure data-rv="" onMouseEnter="{{ lh3 }}" onMouseLeave="{{ lhOff }}" style="--d:360ms;flex:0 0 {{ L.pw }};margin:0;margin-top:{{ P3.off }};scroll-snap-align:start">
           <div style="position:relative;aspect-ratio:3 / 4;border-radius:var(--radius-lg);overflow:hidden;background:var(--indigo-900)">
-            <div style="position:absolute;inset:0;transform:scale({{ P3.s }});transition:transform 900ms var(--ease-standard)"><image-slot id="lider-jorge" shape="rect" src="assets/texture-b.jpg" placeholder="Retrato editorial · Jorge Kalil" style="display:block;width:100%;height:100%"></image-slot></div>
+            <div style="position:absolute;inset:0;transform:scale({{ P3.s }});transition:transform 900ms var(--ease-standard)"><span aria-hidden="true" style="position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(90% 70% at 50% 30%, var(--indigo-500) 0%, var(--indigo-800) 70%);font-family:var(--font-display);font-size:clamp(56px,6vw,96px);font-weight:800;letter-spacing:-.04em;color:rgba(255,255,255,.18)">JK</span><img data-portrait="" src="assets/pessoas/jorge-kalil.jpg" alt="Jorge Kalil" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;filter:grayscale(1) contrast(1.06) brightness(1.03)"></img></div>
             <div aria-hidden="true" style="position:absolute;inset:0;background:var(--indigo-700);mix-blend-mode:color;pointer-events:none"></div>
             <div style="position:absolute;left:0;right:0;bottom:0;padding:48px 20px 20px;background:linear-gradient(to top, rgba(20,6,56,.92), rgba(20,6,56,0));color:#fff;opacity:{{ P3.o }};transform:translateY({{ P3.y }});transition:opacity 240ms var(--ease-standard), transform 240ms var(--ease-standard);pointer-events:none"><p data-i18n="lead.c4" style="margin:0;font-size:15px;line-height:1.45">Imunologista, professor titular da FMUSP e referência internacional na área.</p></div>
           </div>
@@ -610,20 +614,20 @@
       <div style="margin-top:clamp(40px,5vw,72px);border-top:1px solid var(--grey-300)">
         <div data-rv="fade" style="display:flex;flex-wrap:wrap;border-bottom:1px solid var(--grey-300)">
           <p data-i18n="eco.p" style="flex:0 0 240px;margin:0;padding:24px 0;font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-700)">Parceiros</p>
-          <div style="flex:1 1 560px;display:grid;grid-template-columns:repeat(auto-fill, minmax(180px, 1fr))">
-            <sc-for list="{{ ecoP }}" as="c" hint-placeholder-count="2"><div data-rep="" style="height:112px;display:grid;place-items:center;border-left:1px solid var(--grey-200);padding:0 16px;text-align:center;font-size:17px;font-weight:600;letter-spacing:-.01em;color:var(--grey-600)">{{ c }}</div></sc-for>
+          <div style="flex:1 1 560px;display:grid;grid-template-columns:{{ L.ecoCols }}">
+            <sc-for list="{{ ecoP }}" as="c" hint-placeholder-count="2"><div data-rep="" style="height:{{ L.ecoH }};display:grid;place-items:center;border-left:1px solid var(--grey-200);padding:0 16px;text-align:center;font-size:17px;font-weight:600;letter-spacing:-.01em;color:var(--grey-600)">{{ c }}</div></sc-for>
           </div>
         </div>
         <div data-rv="fade" style="--d:120ms;display:flex;flex-wrap:wrap;border-bottom:1px solid var(--grey-300)">
           <p data-i18n="eco.a" style="flex:0 0 240px;margin:0;padding:24px 0;font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-700)">Apoiadores</p>
-          <div style="flex:1 1 560px;display:grid;grid-template-columns:repeat(auto-fill, minmax(180px, 1fr))">
-            <sc-for list="{{ ecoA }}" as="c" hint-placeholder-count="1"><div data-rep="" style="height:112px;display:grid;place-items:center;border-left:1px solid var(--grey-200);padding:0 16px;text-align:center;font-size:17px;font-weight:600;letter-spacing:-.01em;color:var(--grey-600)">{{ c }}</div></sc-for>
+          <div style="flex:1 1 560px;display:grid;grid-template-columns:{{ L.ecoCols }}">
+            <sc-for list="{{ ecoA }}" as="c" hint-placeholder-count="1"><div data-rep="" style="height:{{ L.ecoH }};display:grid;place-items:center;border-left:1px solid var(--grey-200);padding:0 16px;text-align:center;font-size:17px;font-weight:600;letter-spacing:-.01em;color:var(--grey-600)">{{ c }}</div></sc-for>
           </div>
         </div>
         <div data-rv="fade" style="--d:240ms;display:flex;flex-wrap:wrap;border-bottom:1px solid var(--grey-300)">
           <p data-i18n="eco.i" style="flex:0 0 240px;margin:0;padding:24px 0;font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-700)">Investidores</p>
-          <div style="flex:1 1 560px;display:grid;grid-template-columns:repeat(auto-fill, minmax(180px, 1fr))">
-            <sc-for list="{{ ecoI }}" as="c" hint-placeholder-count="1"><div data-rep="" style="height:112px;display:grid;place-items:center;border-left:1px solid var(--grey-200);padding:0 16px;text-align:center;font-size:17px;font-weight:600;letter-spacing:-.01em;color:var(--grey-600)">{{ c }}</div></sc-for>
+          <div style="flex:1 1 560px;display:grid;grid-template-columns:{{ L.ecoCols }}">
+            <sc-for list="{{ ecoI }}" as="c" hint-placeholder-count="1"><div data-rep="" style="height:{{ L.ecoH }};display:grid;place-items:center;border-left:1px solid var(--grey-200);padding:0 16px;text-align:center;font-size:17px;font-weight:600;letter-spacing:-.01em;color:var(--grey-600)">{{ c }}</div></sc-for>
           </div>
         </div>
       </div>
@@ -710,7 +714,7 @@
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));gap:40px 24px;margin-top:clamp(48px,6vw,80px);padding-top:clamp(40px,4vw,56px);border-top:1px solid var(--grey-300)">
         <nav aria-label="Empresa" style="display:flex;flex-direction:column;gap:14px"><span data-i18n="ft.c1" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-600)">Empresa</span><a href="#" style="font-size:16px;text-decoration:none"><span data-i18n="ft.about">Sobre</span></a><a href="#equipe" style="font-size:16px;text-decoration:none"><span data-i18n="nav.team">Equipe</span></a><a href="#" style="font-size:16px;text-decoration:none"><span data-i18n="ft.careers">Carreiras</span></a></nav>
-        <nav aria-label="Ciência" style="display:flex;flex-direction:column;gap:14px"><span data-i18n="ft.c2" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-600)">Ciência</span><a href="#tecnologia" style="font-size:16px;text-decoration:none"><span data-i18n="nav.tech">Tecnologia</span></a><a href="#pipeline" style="font-size:16px;text-decoration:none"><span data-i18n="nav.pipe">Pipeline</span></a><a href="#publicacoes" style="font-size:16px;text-decoration:none"><span data-i18n="eb.pubs">Publicações</span></a></nav>
+        <nav aria-label="Ciência" style="display:flex;flex-direction:column;gap:14px"><span data-i18n="ft.c2" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-600)">Ciência</span><a href="tecnologia.html" style="font-size:16px;text-decoration:none"><span data-i18n="nav.tech">Tecnologia</span></a><a href="#pipeline" style="font-size:16px;text-decoration:none"><span data-i18n="nav.pipe">Pipeline</span></a><a href="#publicacoes" style="font-size:16px;text-decoration:none"><span data-i18n="eb.pubs">Publicações</span></a></nav>
         <nav aria-label="Redes" style="display:flex;flex-direction:column;gap:14px"><span data-i18n="ft.c4" style="font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-600)">Redes</span><div style="display:flex;gap:12px"><a href="#" aria-label="LinkedIn" style="width:48px;height:48px;border-radius:50%;border:1px solid var(--grey-300);display:grid;place-items:center;color:var(--indigo-700);text-decoration:none;transition:border-color 140ms var(--ease-standard), background 140ms var(--ease-standard)" style-hover="border-color:var(--indigo-700);background:var(--indigo-50)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="#" aria-label="Instagram" style="width:48px;height:48px;border-radius:50%;border:1px solid var(--grey-300);display:grid;place-items:center;color:var(--indigo-700);text-decoration:none;transition:border-color 140ms var(--ease-standard), background 140ms var(--ease-standard)" style-hover="border-color:var(--indigo-700);background:var(--indigo-50)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><path d="M17.5 6.5h.01"></path></svg></a></div></nav>
       </div>
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:24px;margin-top:clamp(48px,6vw,80px);padding-top:24px;border-top:1px solid var(--grey-300)">
@@ -726,7 +730,7 @@ class Component extends DCLogic {
   static EN = {
     'nav.disc':'Discover','nav.tech':'Technology','nav.pipe':'Pipeline','nav.pubs':'Publications','nav.team':'Team','nav.news':'News','nav.press':'Press','cta.contact':'Contact Vyro','cta.tech':'Explore the technology',
     'hero.seal':'Preclinical stage','hero.sup':'Vyro develops investigational therapies for malignant central nervous system tumors, built on Zika virus research.','hero.h1a':'From enemy','hero.h1b':'to hero.',
-    'eb.film':'Film','film.cta':'Watch and discover','film.h2':'The virus Brazil learned to fear.','film.sup':'Watch the video and discover how Vyro is turning the scourge of the Zika virus into revolutionary treatments.',
+    'eb.film':'Film','film.cta':'Watch and discover','film.h2':'The virus Brazil learned to fear.','film.sup':'Three minutes on how it is being transformed.',
     'eb.problem':'The problem','prob.h2':'A diagnosis with few options.',
     'prob.p1':'Glioblastoma and medulloblastoma are among the most aggressive tumors known. They grow fast, sit behind the barrier that protects the brain and respond poorly to the therapies available today.',
     'prob.p2':'They are rare diseases, and rare diseases receive a fraction of research investment. The result is a field that has changed little in decades.',
@@ -780,8 +784,8 @@ class Component extends DCLogic {
     ['2026', 'A escala', 'Agência estadual de fomento aprova projeto de 24 meses para validar a produção.', 'Scale', 'A state funding agency approves a 24-month project to validate production.']
   ];
   static TX = {
-    pt: { film: 'Filme', close: 'Fechar', progress: 'Progresso do vídeo', cc: 'Legendas', fs: 'Tela cheia', watch: 'Assistir ao filme', scroll: 'Descer para a próxima seção', s3alt: 'Ilustração abstrata: um contorno se transforma enquanto partículas chegam a um grupo de células-alvo, reconhecem o alvo, preservam o tecido ao redor e ativam uma resposta.', current: 'Posição atual', readPaper: 'Ler artigo', tlAria: 'Linha do tempo: arraste ou use as setas do teclado', prev: 'Marco anterior', next: 'Próximo marco', emailPh: 'seu@email.com', play: 'Reproduzir', pause: 'Pausar', mute: 'Desativar som', unmute: 'Ativar som', menu: 'Menu', sub: 'Assinar', subd: 'Inscrito', prompt: 'Passe o cursor sobre um estágio para ver o que ele significa.', topics: ['Investimento', 'Parceria ou indústria', 'Imprensa', 'Pesquisa científica', 'Paciente ou associação', 'Outro'] },
-    en: { film: 'Film', close: 'Close', progress: 'Video progress', cc: 'Captions', fs: 'Fullscreen', watch: 'Watch the film', scroll: 'Scroll to the next section', s3alt: 'Abstract illustration: an outline transforms as particles reach a cluster of target cells, recognize the target, spare the surrounding tissue and activate a response.', current: 'Current position', readPaper: 'Read paper', tlAria: 'Timeline: drag or use the arrow keys', prev: 'Previous milestone', next: 'Next milestone', emailPh: 'you@email.com', play: 'Play', pause: 'Pause', mute: 'Mute', unmute: 'Unmute', menu: 'Menu', sub: 'Subscribe', subd: 'Subscribed', prompt: 'Hover over a stage to see what it means.', topics: ['Investment', 'Partnership or industry', 'Press', 'Scientific research', 'Patient or association', 'Other'] }
+    pt: { rotate: 'Gire o celular para ver em tela cheia', film: 'Filme', close: 'Fechar', progress: 'Progresso do vídeo', cc: 'Legendas', fs: 'Tela cheia', watch: 'Assistir ao filme', scroll: 'Descer para a próxima seção', s3alt: 'Ilustração abstrata: um contorno se transforma enquanto partículas chegam a um grupo de células-alvo, reconhecem o alvo, preservam o tecido ao redor e ativam uma resposta.', current: 'Posição atual', readPaper: 'Ler artigo', tlAria: 'Linha do tempo: arraste ou use as setas do teclado', prev: 'Marco anterior', next: 'Próximo marco', emailPh: 'seu@email.com', play: 'Reproduzir', pause: 'Pausar', mute: 'Desativar som', unmute: 'Ativar som', menu: 'Menu', sub: 'Assinar', subd: 'Inscrito', prompt: 'Passe o cursor sobre um estágio para ver o que ele significa.', topics: ['Investimento', 'Parceria ou indústria', 'Imprensa', 'Pesquisa científica', 'Paciente ou associação', 'Outro'] },
+    en: { rotate: 'Rotate your phone for full screen', film: 'Film', close: 'Close', progress: 'Video progress', cc: 'Captions', fs: 'Fullscreen', watch: 'Watch the film', scroll: 'Scroll to the next section', s3alt: 'Abstract illustration: an outline transforms as particles reach a cluster of target cells, recognize the target, spare the surrounding tissue and activate a response.', current: 'Current position', readPaper: 'Read paper', tlAria: 'Timeline: drag or use the arrow keys', prev: 'Previous milestone', next: 'Next milestone', emailPh: 'you@email.com', play: 'Play', pause: 'Pause', mute: 'Mute', unmute: 'Unmute', menu: 'Menu', sub: 'Subscribe', subd: 'Subscribed', prompt: 'Hover over a stage to see what it means.', topics: ['Investment', 'Partnership or industry', 'Press', 'Scientific research', 'Patient or association', 'Other'] }
   };
 
   state = { w: typeof window !== 'undefined' ? window.innerWidth : 1440, h: typeof window !== 'undefined' ? window.innerHeight : 900, lang: (() => { try { return localStorage.getItem('vyro-home-lang') || 'pt'; } catch (e) { return 'pt'; } })(), step: 0, flip: false, navDark: true, scrolled: false, menu: false, hov: null, lh: null, topic: 0, news: true, sent: false, newsOk: false, player: false, playerLoaded: false, playing: false, muted: false, cc: false, ctrl: true, stageHov: null, mStage: null, tlActive: 0 };
@@ -846,6 +850,7 @@ class Component extends DCLogic {
     const root = this.rootRef.current; if (!root) return;
     root.querySelectorAll('[data-rv]:not(.in)').forEach(n => this.io.observe(n));
     root.querySelectorAll('[data-count]').forEach(n => { if (!n.__obs) { n.__obs = 1; this.cio.observe(n); } });
+    root.querySelectorAll('img[data-portrait]').forEach(i => { if (i.__chk) return; i.__chk = 1; const miss = () => { i.style.display = 'none'; }; if (i.complete && !i.naturalWidth) miss(); else i.addEventListener('error', miss); });
   }
   applyLang() {
     const root = this.rootRef.current; if (!root) return;
@@ -880,6 +885,9 @@ body.rm [data-rv="line"]>span,body.rm [data-vline]>span{transform:none!important
 body.rm [data-bar]{transform:none!important;transition:none}
 body.rm [data-mark]{opacity:1;transition:none}
 body.rm{scroll-behavior:auto}
+@keyframes vy-rotate{0%,18%{transform:rotate(0)}48%,78%{transform:rotate(-90deg)}100%{transform:rotate(0)}}
+[data-rotate-icon]{animation:vy-rotate 2400ms cubic-bezier(.22,.61,.36,1) infinite}
+body.rm [data-rotate-icon]{animation:none;transform:rotate(-90deg)}
 [data-scroller]::-webkit-scrollbar,[data-tl]::-webkit-scrollbar{display:none}
 [data-tl]:active{cursor:grabbing}
 :focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px}
@@ -1104,19 +1112,20 @@ body.ann [data-rep],body.ann [data-i18n]{outline:1px dashed var(--signal-amber);
   };
 
   loadWistia() {
-    if (this.wq) { return; }
-    this.wq = true;
     window._wq = window._wq || [];
-    window._wq.push({ id: '39jobj362k', onReady: v => this.onVideo(v) });
+    if (!this.wq) { this.wq = true; window._wq.push({ id: '39jobj362k', onReady: v => this.onVideo(v) }); }
     if (!document.querySelector('script[data-wistia]')) { const s = document.createElement('script'); s.src = 'https://fast.wistia.net/assets/external/E-v1.js'; s.async = true; s.dataset.wistia = '1'; document.head.appendChild(s); }
-    let n = 0; const poll = () => { if (this.wv || n++ > 30) return; try { const v = window.Wistia && window.Wistia.api && window.Wistia.api('39jobj362k'); if (v) { this.onVideo(v); return; } } catch (e) {} setTimeout(poll, 500); }; setTimeout(poll, 800);
+    const gen = (this.wGen = (this.wGen || 0) + 1);
+    let n = 0; const poll = () => { if (gen !== this.wGen || !this.state.player || this.wv || n++ > 40) return; try { const v = window.Wistia && window.Wistia.api && window.Wistia.api('39jobj362k'); if (v) { this.onVideo(v); return; } } catch (e) {} setTimeout(poll, 400); }; setTimeout(poll, 600);
   }
   onVideo(v) {
-    if (this.wv === v) return; this.wv = v;
+    if (this.wv === v || !this.state.player) return; this.wv = v;
     try {
       v.bind('play', () => this.setState({ playing: true })); v.bind('pause', () => this.setState({ playing: false })); v.bind('end', () => this.setState({ playing: false }));
-      v.bind('timechange', t => this.updTime(t));
-      if (this.state.player) v.play();
+      v.bind('timechange', t => { this.lastT = t; this.updTime(t); });
+      if (this.lastT > 1) v.time(this.lastT);
+      if (this.state.muted) v.mute();
+      v.play();
     } catch (e) {}
   }
   updTime(t) {
@@ -1135,7 +1144,8 @@ body.ann [data-rep],body.ann [data-i18n]{outline:1px dashed var(--signal-amber);
     const i = this.vIns || { t: 0, s: 0, b: 0, r: 0 };
     if (this.isRM()) ov.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200 });
     else ov.animate([{ clipPath: `inset(${i.t}px ${i.s}px ${i.b}px ${i.s}px round ${i.r}px)` }, { clipPath: 'inset(0px 0px 0px 0px round 0px)' }], { duration: 720, easing: 'cubic-bezier(.22,.61,.36,1)' });
-    if (window.innerWidth < 760 && ov.requestFullscreen) ov.requestFullscreen().catch(() => {});
+    if (window.innerWidth < 760 && ov.requestFullscreen) ov.requestFullscreen().then(() => { try { const o = screen.orientation; if (o && o.lock) o.lock('landscape').catch(() => {}); } catch (e) {} }).catch(() => {});
+    clearTimeout(this.rotT); this.setState({ rotHint: true }); this.rotT = setTimeout(() => this.setState({ rotHint: false }), 5000);
     this.armCtrl();
     try { this.wv && this.wv.play(); } catch (e) {}
     setTimeout(() => { const b = ov.querySelector('button'); b && b.focus({ preventScroll: true }); }, 60);
@@ -1148,11 +1158,11 @@ body.ann [data-rep],body.ann [data-i18n]{outline:1px dashed var(--signal-amber);
   };
   closePlayer = () => {
     if (!this.state.player || this.closing) return; this.closing = true;
-    try { this.wv && this.wv.pause(); } catch (e) {}
+    try { if (this.wv) { this.lastT = this.wv.time(); this.wv.pause(); } } catch (e) {}
     if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
     const ov = this.rootRef.current.querySelector('[data-player]'), i = this.vIns || { t: 0, s: 0, b: 0, r: 0 };
     let fin = false;
-    const done = () => { if (fin) return; fin = true; this.closing = false; document.documentElement.style.overflow = ''; this.setState({ player: false, playing: false }); const f = this.retFocus; f && f.focus && f.focus({ preventScroll: true }); };
+    const done = () => { if (fin) return; fin = true; this.closing = false; document.documentElement.style.overflow = ''; this.wv = null; this.wGen = (this.wGen || 0) + 1; try { const o = screen.orientation; if (o && o.unlock) o.unlock(); } catch (e) {} clearTimeout(this.rotT); this.setState({ player: false, playerLoaded: false, playing: false, rotHint: false }); const f = this.retFocus; f && f.focus && f.focus({ preventScroll: true }); };
     const an = this.isRM() ? ov.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 200 }) : ov.animate([{ clipPath: 'inset(0px 0px 0px 0px round 0px)' }, { clipPath: `inset(${i.t}px ${i.s}px ${i.b}px ${i.s}px round ${i.r}px)` }], { duration: 560, easing: 'cubic-bezier(.22,.61,.36,1)' });
     an.onfinish = done; setTimeout(done, 700);
   };
@@ -1185,7 +1195,7 @@ body.ann [data-rep],body.ann [data-i18n]{outline:1px dashed var(--signal-amber);
       heroTop: m ? '116px' : '148px', heroGap: m ? '28px' : '24px',
       heroCols: m ? 'minmax(0,1fr)' : 'minmax(0,1fr) minmax(0,400px)', heroRows: m ? 'auto 1fr auto auto' : 'auto 1fr auto',
       heroAreas: m ? '"selo" "h" "sup" "bar"' : '"selo sup" "h h" "bar bar"', heroH1: m ? '13.4vw' : 'clamp(64px, 10.4vw, 172px)', ctaDir: m ? 'column' : 'row',
-      navGap: m ? '10px' : '24px', langH: m ? '44px' : '36px', langW: m ? '36px' : '32px',
+      navGap: m ? '10px' : '24px', logoW: m ? 'min(178px, calc(100vw - 212px))' : '178px', langH: m ? '44px' : '36px', langW: m ? '36px' : '32px',
       vH: (m || rm) ? '100svh' : '200vh', vCursor: (m || rm) ? 'pointer' : 'none', vTagT: m ? '108px' : '136px', vPadL: m ? '20px' : 'calc(clamp(20px,4.4vw,64px) + 32px)',
       playTop: m ? '44%' : '45%', playS: m ? '96px' : (this.state.h < 720 ? '104px' : '128px'), vTextL: m ? '20px' : 'calc(clamp(20px,4.4vw,64px) + clamp(24px,4vw,56px))', vTextB: m ? '40px' : 'calc(48px + clamp(28px,4vw,56px))', vH2: m ? '40px' : (this.state.h < 720 ? 'clamp(40px,4.6vw,64px)' : 'clamp(48px,6vw,96px)'), vPadT: m ? '100px' : '124px',
       s3h: m ? '560vh' : '520vh', s3cx: m ? '50%' : '68%', s3cy: m ? '27%' : '50%', s3w: m ? 'calc(100% - 40px)' : 'min(34vw, 500px)',
@@ -1193,6 +1203,7 @@ body.ann [data-rep],body.ann [data-i18n]{outline:1px dashed var(--signal-amber);
       tA: m ? '480px' : '680px', tB: m ? '460px' : '580px', bOff: m ? '0px' : '200px',
       pw: m ? '78%' : 'calc((100% - 72px) / 4)', lg: m ? '14px' : '24px', teamMin: m ? '140px' : '180px',
       labH: m ? '68vh' : 'min(92vh, 920px)', labPull: m ? '-48px' : '-240px',
+      ecoCols: m ? 'repeat(2, minmax(0,1fr))' : 'repeat(auto-fill, minmax(180px, 1fr))', ecoH: m ? '88px' : '112px',
       pubCols: m ? 'minmax(0,1fr)' : '64px 280px minmax(0,1fr) auto', pubGap: m ? '10px' : '32px', tlW: tlW + 'px'
     };
     const offs = m ? ['0px', '0px', '0px', '0px'] : ['0px', '120px', '40px', '176px'];
@@ -1211,7 +1222,7 @@ body.ann [data-rep],body.ann [data-i18n]{outline:1px dashed var(--signal-amber);
     const tl = TL.map((r, i) => ({ y: r[0], h: en ? r[3] : r[1], p: en ? r[4] : r[2], notLast: i < TL.length - 1, o: m || i === ta ? 1 : 0.38, s: m || i === ta ? 1 : 0.82, dot: i === ta ? '22px' : '14px', dotBg: i <= ta ? 'var(--indigo-700)' : 'var(--white)' }));
     const topics = tx.topics.map((label, i) => { const on = st.topic === i; return { label, on: on ? 'true' : 'false', bg: on ? 'var(--indigo-700)' : 'transparent', fg: on ? '#fff' : 'var(--ink)', bd: on ? 'var(--indigo-700)' : 'var(--grey-300)', pick: () => this.setState({ topic: i }) }; });
     return {
-      rootRef: this.rootRef, L, t: tx, mob: m, desk: !m, navCta: st.w >= 1200, langAttr: en ? 'en' : 'pt-BR',
+      rootRef: this.rootRef, L, t: tx, mob: m, desk: !m, navFull: st.w >= 1080, navMenu: st.w < 1080, navCta: st.w >= 1200, langAttr: en ? 'en' : 'pt-BR',
       texImmuno: tex === 'Imunofluorescência', texNet: tex === 'Rede celular',
       navBg: !st.scrolled && nd ? 'transparent' : (nd ? 'rgba(20,6,56,0.72)' : 'rgba(255,255,255,0.84)'),
       navBlur: st.scrolled ? 'blur(14px)' : 'none', navInk: nd ? '#fff' : 'var(--ink)', navO: st.player ? 0 : 1, navPE: st.player ? 'none' : 'auto',
@@ -1222,6 +1233,7 @@ body.ann [data-rep],body.ann [data-i18n]{outline:1px dashed var(--signal-amber);
       setPT: () => this.setLang('pt'), setEN: () => this.setLang('en'),
       menu: st.menu, menuLabel: st.menu ? tx.close : tx.menu, toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
       ghostDark: { style: { color: '#fff', border: '1px solid rgba(255,255,255,.35)' } },
+      rotO: st.player && st.rotHint && m && st.h > st.w ? 1 : 0, rotAh: st.player && st.rotHint && m && st.h > st.w ? 'false' : 'true',
       pDisp: st.player ? 'block' : 'none', pAh: st.player ? 'false' : 'true', pCursor: st.ctrl ? 'default' : 'none', ctrlO: st.ctrl ? 1 : 0,
       playerLoaded: st.playerLoaded, playing: st.playing, paused: !st.playing, playLabel: st.playing ? tx.pause : tx.play,
       muted: st.muted ? 'true' : 'false', muteLabel: st.muted ? tx.unmute : tx.mute, waveO: st.muted ? 0 : 1, muteO: st.muted ? 1 : 0,
@@ -1233,8 +1245,8 @@ body.ann [data-rep],body.ann [data-i18n]{outline:1px dashed var(--signal-amber);
       stepLabel: '0' + (st.step + 1), s3ink: st.flip ? 'var(--ink)' : '#fff',
       S0: S(0), S1: S(1), S2: S(2), S3: S(3), A: Tr('a'), B: Tr('b'),
       hovA: () => !m && this.setState({ hov: 'a' }), hovB: () => !m && this.setState({ hov: 'b' }), hovOff: () => !m && this.setState({ hov: null }),
-      tapA: e => { e.preventDefault(); if (m) this.setState(s => ({ hov: s.hov === 'a' ? null : 'a' })); },
-      tapB: e => { e.preventDefault(); if (m) this.setState(s => ({ hov: s.hov === 'b' ? null : 'b' })); },
+      tapA: e => { if (m && st.hov !== 'a') { e.preventDefault(); this.setState({ hov: 'a' }); } },
+      tapB: e => { if (m && st.hov !== 'b') { e.preventDefault(); this.setState({ hov: 'b' }); } },
       stages, stageCols, stagesM, stageOff: () => this.setState({ stageHov: null }),
       pA: { w: ((sa + 0.55) / 7 * 100).toFixed(2) + '%' }, pB: { w: ((sb + 0.55) / 7 * 100).toFixed(2) + '%' },
       stageTitle: hv == null ? '' : (en ? STG[hv][1] : STG[hv][0]) + '.', stageDesc: hv == null ? tx.prompt : (en ? STG[hv][3] : STG[hv][2]),
