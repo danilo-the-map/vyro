@@ -79,6 +79,7 @@
       </div>
     </sc-if>
     <div onMouseMove="{{ pMove }}" onClick="{{ pTogglePlay }}" style="position:absolute;inset:0"></div>
+    <div data-rotate="" role="status" aria-hidden="{{ rotAh }}" style="position:absolute;left:50%;top:calc(50% - 28.125vw - 24px);transform:translate(-50%,-100%);display:flex;align-items:center;gap:12px;padding:10px 16px 10px 12px;border-radius:999px;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;white-space:nowrap;pointer-events:none;opacity:{{ rotO }};transition:opacity 480ms var(--ease-standard)"><svg data-rotate-icon="" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"></rect><path d="M11 18h2"></path></svg><span style="font-size:14px;font-weight:500;line-height:1.3">{{ t.rotate }}</span></div>
     <div onMouseMove="{{ pMove }}" style="position:absolute;inset:0;pointer-events:none;opacity:{{ ctrlO }};transition:opacity 480ms var(--ease-standard)">
       <button type="button" onClick="{{ closePlayer }}" aria-label="{{ t.close }}" style="pointer-events:auto;position:absolute;top:clamp(16px,2.4vw,32px);right:clamp(16px,2.4vw,32px);width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(0,0,0,.35);color:#fff;display:grid;place-items:center;cursor:pointer" style-hover="background:rgba(255,255,255,.12)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
       <div style="pointer-events:auto;position:absolute;left:0;right:0;bottom:0;padding:48px clamp(16px,2.4vw,32px) clamp(16px,2.4vw,28px);background:linear-gradient(to top, rgba(0,0,0,.7), rgba(0,0,0,0));display:flex;align-items:center;gap:clamp(8px,1.2vw,16px);color:#fff">
@@ -783,8 +784,8 @@ class Component extends DCLogic {
     ['2026', 'A escala', 'Agência estadual de fomento aprova projeto de 24 meses para validar a produção.', 'Scale', 'A state funding agency approves a 24-month project to validate production.']
   ];
   static TX = {
-    pt: { film: 'Filme', close: 'Fechar', progress: 'Progresso do vídeo', cc: 'Legendas', fs: 'Tela cheia', watch: 'Assistir ao filme', scroll: 'Descer para a próxima seção', s3alt: 'Ilustração abstrata: um contorno se transforma enquanto partículas chegam a um grupo de células-alvo, reconhecem o alvo, preservam o tecido ao redor e ativam uma resposta.', current: 'Posição atual', readPaper: 'Ler artigo', tlAria: 'Linha do tempo: arraste ou use as setas do teclado', prev: 'Marco anterior', next: 'Próximo marco', emailPh: 'seu@email.com', play: 'Reproduzir', pause: 'Pausar', mute: 'Desativar som', unmute: 'Ativar som', menu: 'Menu', sub: 'Assinar', subd: 'Inscrito', prompt: 'Passe o cursor sobre um estágio para ver o que ele significa.', topics: ['Investimento', 'Parceria ou indústria', 'Imprensa', 'Pesquisa científica', 'Paciente ou associação', 'Outro'] },
-    en: { film: 'Film', close: 'Close', progress: 'Video progress', cc: 'Captions', fs: 'Fullscreen', watch: 'Watch the film', scroll: 'Scroll to the next section', s3alt: 'Abstract illustration: an outline transforms as particles reach a cluster of target cells, recognize the target, spare the surrounding tissue and activate a response.', current: 'Current position', readPaper: 'Read paper', tlAria: 'Timeline: drag or use the arrow keys', prev: 'Previous milestone', next: 'Next milestone', emailPh: 'you@email.com', play: 'Play', pause: 'Pause', mute: 'Mute', unmute: 'Unmute', menu: 'Menu', sub: 'Subscribe', subd: 'Subscribed', prompt: 'Hover over a stage to see what it means.', topics: ['Investment', 'Partnership or industry', 'Press', 'Scientific research', 'Patient or association', 'Other'] }
+    pt: { rotate: 'Gire o celular para ver em tela cheia', film: 'Filme', close: 'Fechar', progress: 'Progresso do vídeo', cc: 'Legendas', fs: 'Tela cheia', watch: 'Assistir ao filme', scroll: 'Descer para a próxima seção', s3alt: 'Ilustração abstrata: um contorno se transforma enquanto partículas chegam a um grupo de células-alvo, reconhecem o alvo, preservam o tecido ao redor e ativam uma resposta.', current: 'Posição atual', readPaper: 'Ler artigo', tlAria: 'Linha do tempo: arraste ou use as setas do teclado', prev: 'Marco anterior', next: 'Próximo marco', emailPh: 'seu@email.com', play: 'Reproduzir', pause: 'Pausar', mute: 'Desativar som', unmute: 'Ativar som', menu: 'Menu', sub: 'Assinar', subd: 'Inscrito', prompt: 'Passe o cursor sobre um estágio para ver o que ele significa.', topics: ['Investimento', 'Parceria ou indústria', 'Imprensa', 'Pesquisa científica', 'Paciente ou associação', 'Outro'] },
+    en: { rotate: 'Rotate your phone for full screen', film: 'Film', close: 'Close', progress: 'Video progress', cc: 'Captions', fs: 'Fullscreen', watch: 'Watch the film', scroll: 'Scroll to the next section', s3alt: 'Abstract illustration: an outline transforms as particles reach a cluster of target cells, recognize the target, spare the surrounding tissue and activate a response.', current: 'Current position', readPaper: 'Read paper', tlAria: 'Timeline: drag or use the arrow keys', prev: 'Previous milestone', next: 'Next milestone', emailPh: 'you@email.com', play: 'Play', pause: 'Pause', mute: 'Mute', unmute: 'Unmute', menu: 'Menu', sub: 'Subscribe', subd: 'Subscribed', prompt: 'Hover over a stage to see what it means.', topics: ['Investment', 'Partnership or industry', 'Press', 'Scientific research', 'Patient or association', 'Other'] }
   };
 
   state = { w: typeof window !== 'undefined' ? window.innerWidth : 1440, h: typeof window !== 'undefined' ? window.innerHeight : 900, lang: (() => { try { return localStorage.getItem('vyro-home-lang') || 'pt'; } catch (e) { return 'pt'; } })(), step: 0, flip: false, navDark: true, scrolled: false, menu: false, hov: null, lh: null, topic: 0, news: true, sent: false, newsOk: false, player: false, playerLoaded: false, playing: false, muted: false, cc: false, ctrl: true, stageHov: null, mStage: null, tlActive: 0 };
@@ -884,6 +885,9 @@ body.rm [data-rv="line"]>span,body.rm [data-vline]>span{transform:none!important
 body.rm [data-bar]{transform:none!important;transition:none}
 body.rm [data-mark]{opacity:1;transition:none}
 body.rm{scroll-behavior:auto}
+@keyframes vy-rotate{0%,18%{transform:rotate(0)}48%,78%{transform:rotate(-90deg)}100%{transform:rotate(0)}}
+[data-rotate-icon]{animation:vy-rotate 2400ms cubic-bezier(.22,.61,.36,1) infinite}
+body.rm [data-rotate-icon]{animation:none;transform:rotate(-90deg)}
 [data-scroller]::-webkit-scrollbar,[data-tl]::-webkit-scrollbar{display:none}
 [data-tl]:active{cursor:grabbing}
 :focus-visible{outline:2px solid var(--focus-ring);outline-offset:3px}
@@ -1140,7 +1144,8 @@ body.ann [data-rep],body.ann [data-i18n]{outline:1px dashed var(--signal-amber);
     const i = this.vIns || { t: 0, s: 0, b: 0, r: 0 };
     if (this.isRM()) ov.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 200 });
     else ov.animate([{ clipPath: `inset(${i.t}px ${i.s}px ${i.b}px ${i.s}px round ${i.r}px)` }, { clipPath: 'inset(0px 0px 0px 0px round 0px)' }], { duration: 720, easing: 'cubic-bezier(.22,.61,.36,1)' });
-    if (window.innerWidth < 760 && ov.requestFullscreen) ov.requestFullscreen().catch(() => {});
+    if (window.innerWidth < 760 && ov.requestFullscreen) ov.requestFullscreen().then(() => { try { const o = screen.orientation; if (o && o.lock) o.lock('landscape').catch(() => {}); } catch (e) {} }).catch(() => {});
+    clearTimeout(this.rotT); this.setState({ rotHint: true }); this.rotT = setTimeout(() => this.setState({ rotHint: false }), 5000);
     this.armCtrl();
     try { this.wv && this.wv.play(); } catch (e) {}
     setTimeout(() => { const b = ov.querySelector('button'); b && b.focus({ preventScroll: true }); }, 60);
@@ -1157,7 +1162,7 @@ body.ann [data-rep],body.ann [data-i18n]{outline:1px dashed var(--signal-amber);
     if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
     const ov = this.rootRef.current.querySelector('[data-player]'), i = this.vIns || { t: 0, s: 0, b: 0, r: 0 };
     let fin = false;
-    const done = () => { if (fin) return; fin = true; this.closing = false; document.documentElement.style.overflow = ''; this.wv = null; this.wGen = (this.wGen || 0) + 1; this.setState({ player: false, playerLoaded: false, playing: false }); const f = this.retFocus; f && f.focus && f.focus({ preventScroll: true }); };
+    const done = () => { if (fin) return; fin = true; this.closing = false; document.documentElement.style.overflow = ''; this.wv = null; this.wGen = (this.wGen || 0) + 1; try { const o = screen.orientation; if (o && o.unlock) o.unlock(); } catch (e) {} clearTimeout(this.rotT); this.setState({ player: false, playerLoaded: false, playing: false, rotHint: false }); const f = this.retFocus; f && f.focus && f.focus({ preventScroll: true }); };
     const an = this.isRM() ? ov.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 200 }) : ov.animate([{ clipPath: 'inset(0px 0px 0px 0px round 0px)' }, { clipPath: `inset(${i.t}px ${i.s}px ${i.b}px ${i.s}px round ${i.r}px)` }], { duration: 560, easing: 'cubic-bezier(.22,.61,.36,1)' });
     an.onfinish = done; setTimeout(done, 700);
   };
@@ -1228,6 +1233,7 @@ body.ann [data-rep],body.ann [data-i18n]{outline:1px dashed var(--signal-amber);
       setPT: () => this.setLang('pt'), setEN: () => this.setLang('en'),
       menu: st.menu, menuLabel: st.menu ? tx.close : tx.menu, toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
       ghostDark: { style: { color: '#fff', border: '1px solid rgba(255,255,255,.35)' } },
+      rotO: st.player && st.rotHint && m && st.h > st.w ? 1 : 0, rotAh: st.player && st.rotHint && m && st.h > st.w ? 'false' : 'true',
       pDisp: st.player ? 'block' : 'none', pAh: st.player ? 'false' : 'true', pCursor: st.ctrl ? 'default' : 'none', ctrlO: st.ctrl ? 1 : 0,
       playerLoaded: st.playerLoaded, playing: st.playing, paused: !st.playing, playLabel: st.playing ? tx.pause : tx.play,
       muted: st.muted ? 'true' : 'false', muteLabel: st.muted ? tx.unmute : tx.mute, waveO: st.muted ? 0 : 1, muteO: st.muted ? 1 : 0,
