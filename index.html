@@ -241,7 +241,7 @@
           <div aria-hidden="{{ S0.ah }}" style="grid-area:1 / 1;opacity:{{ S0.o }};transform:translateY({{ S0.y }});transition:opacity 480ms var(--ease-standard), transform 480ms var(--ease-standard)">
             <p data-i18n="st.l1" style="margin:0 0 18px;font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--signal-teal)">Etapa 01</p>
             <h3 data-i18n="st.h1" style="margin:0 0 20px;font-size:{{ L.s3h3 }};font-weight:700;line-height:1;letter-spacing:-.035em;color:inherit">Chega ao sistema nervoso central</h3>
-            <p data-i18n="st.p1" style="margin:0;max-width:30em;font-size:clamp(16px,1.3vw,19px);line-height:1.6;opacity:.82">A plataforma atravessa a barreira que protege o cérebro — o obstáculo que limita boa parte das abordagens convencionais.</p>
+            <p data-i18n="st.p1" style="margin:0;max-width:30em;font-size:clamp(16px,1.3vw,19px);line-height:1.6;opacity:.82">A plataforma atravessa a barreira que protege o cérebro, o obstáculo que limita boa parte das abordagens convencionais.</p>
           </div>
           <div aria-hidden="{{ S1.ah }}" style="grid-area:1 / 1;opacity:{{ S1.o }};transform:translateY({{ S1.y }});transition:opacity 480ms var(--ease-standard), transform 480ms var(--ease-standard)">
             <p data-i18n="st.l2" style="margin:0 0 18px;font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--signal-teal)">Etapa 02</p>
@@ -407,7 +407,7 @@
         <div data-rv="" style="--d:200ms;flex:1 1 360px;max-width:520px;display:flex;flex-direction:column;gap:20px">
           <x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Eyebrow" color="var(--indigo-200)" hint-size="180px,20px"><span data-i18n="eb.ms">Marco institucional</span></x-import>
           <h2 data-i18n="ms.h2" style="margin:0;font-size:clamp(28px,2.7vw,39px);font-weight:700;line-height:1.15;letter-spacing:-.02em;color:#fff">A FAPESP aprovou o PIPE Fase 2 Direta da Vyro.</h2>
-          <p data-i18n="ms.p" style="margin:0;font-size:17px;line-height:1.6;color:var(--indigo-100)">Mais de R$ 1,2 milhão para desenvolver e validar o processo de produção do oZIKV em biorreator — a etapa que transforma uma descoberta científica em um processo controlado, documentado e reprodutível.</p>
+          <p data-i18n="ms.p" style="margin:0;font-size:17px;line-height:1.6;color:var(--indigo-100)">Mais de R$ 1,2 milhão para desenvolver e validar o processo de produção do oZIKV em biorreator. É a etapa que transforma uma descoberta científica em um processo controlado, documentado e reprodutível.</p>
           <p data-i18n="ms.note" style="margin:0;font-size:14px;line-height:1.5;color:var(--indigo-200)">Projeto aprovado e em contratação. Não inclui produção clínica nem ensaio em humanos.</p>
         </div>
       </div>
@@ -744,7 +744,7 @@ class Component extends DCLogic {
     'prob.p2':'They are rare diseases, and rare diseases receive a fraction of research investment. The result is a field that has changed little in decades.',
     'prob.n1u':'thousand','prob.n1':'new CNS cancer cases per year in Brazil','prob.s1':'Source: INCA','prob.n2':'five-year relative survival in glioblastoma','prob.s2':'Source: CBTRUS','prob.n3':'of brain tumor deaths come from glioblastoma and medulloblastoma',
     'eb.how':'How it works','st.l1':'Step 01','st.l2':'Step 02','st.l3':'Step 03','st.l4':'Step 04',
-    'st.h1':'Reaches the central nervous system','st.p1':'The platform crosses the barrier that protects the brain — the obstacle that limits most conventional approaches.',
+    'st.h1':'Reaches the central nervous system','st.p1':'The platform crosses the barrier that protects the brain, the obstacle that limits most conventional approaches.',
     'st.h2':'Recognizes the tumor cell','st.p2':'Features specific to tumor cells guide the action. Selectivity comes from the biology of the target, not from a higher dose.',
     'st.h3':'Spares healthy tissue','st.p3':'In the models studied, neurons and surrounding healthy cells remain intact. The effect stays where it needs to be.',
     'st.h4':'Activates the immune response','st.p4':'The local action signals the immune system, which begins to recognize the tumor and extends the response beyond the initial site.',
@@ -754,7 +754,7 @@ class Component extends DCLogic {
     'plat.b.k':'Viral vector','plat.b.d':'A delivery platform derived from the same foundation, designed to carry gene therapies to the brain. It extends the reach of the technology beyond oncology.',
     'eb.pipe':'Pipeline','pipe.h2':'From the lab to the clinic','pipe.prog':'Program',
     'ms.months':'months','eb.ms':'Institutional milestone','ms.h2':"FAPESP approved Vyro's Direct PIPE Phase 2 project.",
-    'ms.p':'Over R$ 1.2 million to develop and validate the oZIKV production process in a bioreactor — the step that turns a scientific discovery into a controlled, documented and reproducible process.',
+    'ms.p':'Over R$ 1.2 million to develop and validate the oZIKV production process in a bioreactor. This is the step that turns a scientific discovery into a controlled, documented and reproducible process.',
     'ms.note':'Project approved and under contract. It does not include clinical manufacturing or human trials.',
     'eb.pubs':'Publications','pubs.h2':'Scientific publications',
     'eb.people':'People','lead.h2':'Leadership','lead.link':'Meet the full team',
@@ -766,7 +766,7 @@ class Component extends DCLogic {
     'eb.hist':'History','tl.h2':'Timeline',
     'eb.press':'Press','press.h2':'In the media','press.d1':'Sep 2026','press.d3':'Aug 2026','press.by':'Article by Luiz Caires','press.read':'Read article',
     'eb.eco':'Ecosystem','eco.h2':'Partners, supporters and investors','eco.p':'Partners','eco.a':'Supporters','eco.i':'Investors','rec.label':'Recognition',
-    'eb.contact':'Contact','ct.h2':"Let's talk.",'ct.sup':'For investors, partners, press and researchers. We reply within two business days.','ct.mail':'Direct email','ct.pr':"the map — Vyro's press office",'ct.prm':'osmar.barros@themap.ag','ct.subj':'Subject',
+    'eb.contact':'Contact','ct.h2':"Let's talk.",'ct.sup':'For investors, partners, press and researchers. We reply within two business days.','ct.mail':'Direct email','ct.pr':"Vyro's press office: the map",'ct.prm':'osmar.barros@themap.ag','ct.subj':'Subject',
     'ct.patient':'Vyro is at preclinical stage and does not yet conduct studies in humans. We do not provide treatment or enrollment in clinical trials. For medical guidance, please consult your oncologist.',
     'ct.name':'Name','ct.email':'Email','ct.org':'Organization','ct.msg':'Message','ct.news':'Subscribe to the Vyro newsletter','ct.send':'Send message','ct.priv':'By sending, you agree to the Privacy Policy. Your data is not shared.',
     'ct.sent':'Message sent','ct.thanks':"Thank you. We'll get back to you within two business days.",'ct.again':'Send another message',
