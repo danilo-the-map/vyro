@@ -1,0 +1,61 @@
+/* Vyro Biotherapeutics — Typography tokens
+   Brand typeface: NOKA (Adobe Fonts / Typekit kit jka8uju).
+   Load the kit in any consuming page:
+     <link rel="stylesheet" href="https://use.typekit.net/jka8uju.css">
+   NOKA is a geometric sans used for the wordmark, headings and body.
+   System fallbacks keep text usable before the kit resolves. */
+@import url("https://use.typekit.net/jka8uju.css");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+
+:root{
+  /* ---- Families ---- */
+  --font-display:"noka", "Helvetica Neue", Arial, sans-serif;   /* headings, wordmark */
+  --font-body:"noka", "Helvetica Neue", Arial, sans-serif;      /* body copy */
+  --font-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace; /* data / captions */
+
+  /* ---- Weights (NOKA ships 100–900) ---- */
+  --fw-light:300;      /* @kind other */
+  --fw-regular:400;    /* @kind other */
+  --fw-medium:500;     /* @kind other */
+  --fw-semibold:600;   /* @kind other */
+  --fw-bold:700;       /* @kind other */
+  --fw-black:800;      /* @kind other */
+
+  /* ---- Type scale (1.250 major-third, 16px base) ---- */
+  --text-xs:12px;
+  --text-sm:14px;
+  --text-base:16px;
+  --text-md:18px;
+  --text-lg:20px;
+  --text-xl:25px;
+  --text-2xl:31px;
+  --text-3xl:39px;
+  --text-4xl:49px;
+  --text-5xl:61px;
+  --text-6xl:76px;
+
+  /* ---- Line heights ---- */
+  --leading-tight:1.05;
+  --leading-snug:1.2;
+  --leading-normal:1.5;
+  --leading-relaxed:1.65;
+
+  /* ---- Tracking ---- */
+  --tracking-tight:-0.02em;
+  --tracking-normal:0;
+  --tracking-wide:0.04em;
+  --tracking-caps:0.12em;   /* the site's uppercase section labels */
+
+  /* ---- Semantic roles ---- */
+  --heading-family:var(--font-display);
+  --heading-weight:var(--fw-bold);
+  --heading-leading:var(--leading-tight);
+  --heading-tracking:var(--tracking-tight);
+
+  --eyebrow-weight:var(--fw-semibold);
+  --eyebrow-tracking:var(--tracking-caps);
+
+  --body-family:var(--font-body);
+  --body-weight:var(--fw-regular);
+  --body-leading:var(--leading-relaxed);
+}

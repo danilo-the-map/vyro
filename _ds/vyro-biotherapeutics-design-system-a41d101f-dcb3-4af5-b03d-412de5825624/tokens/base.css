@@ -1,0 +1,28 @@
+/* Vyro Biotherapeutics — Base element defaults.
+   Applied lightly so specimen cards and kits inherit brand type/colour. */
+:root{color-scheme:light}
+body{
+  margin:0;
+  font-family:var(--font-body);
+  font-weight:var(--fw-regular);
+  font-size:var(--text-base);
+  line-height:var(--body-leading);
+  color:var(--text-body);
+  background:var(--surface-page);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+h1,h2,h3,h4,h5{
+  font-family:var(--heading-family);
+  font-weight:var(--heading-weight);
+  line-height:var(--heading-leading);
+  letter-spacing:var(--heading-tracking);
+  color:var(--text-strong);
+  margin:0 0 0.5em;
+  text-wrap:balance;
+}
+p{margin:0 0 1em;text-wrap:pretty}
+a{color:var(--text-link);text-decoration:none;transition:color var(--dur-fast) var(--ease-standard)}
+a:hover{color:var(--text-link-hover)}
+strong{font-weight:var(--fw-semibold);color:var(--text-strong)}
+::selection{background:var(--indigo-200);color:var(--indigo-900)}

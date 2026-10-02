@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/vyro-biotherapeutics-design-system-a41d101f-dcb3-4af5-b03d-412de5825624/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/vyro-biotherapeutics-design-system-a41d101f-dcb3-4af5-b03d-412de5825624/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/vyro-biotherapeutics-design-system-a41d101f-dcb3-4af5-b03d-412de5825624/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/vyro-biotherapeutics-design-system-a41d101f-dcb3-4af5-b03d-412de5825624/tokens/base.css">
+  <link rel="stylesheet" href="_ds/vyro-biotherapeutics-design-system-a41d101f-dcb3-4af5-b03d-412de5825624/styles.css">
+  <script src="_ds/vyro-biotherapeutics-design-system-a41d101f-dcb3-4af5-b03d-412de5825624/_ds_bundle.js"></script>
+  <script src="image-slot.js"></script>
+  <style>
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:#0c0326}
+    a{color:var(--indigo-700)}
+    a:hover{color:var(--indigo-500)}
+  </style>
+</helmet>
+<div ref="{{ rootRef }}" style="font-family:var(--font-body);color:var(--ink);background:var(--white);overflow-x:clip">
+
+  <header style="position:fixed;top:0;left:0;right:0;z-index:100;height:84px;background:{{ navBg }};backdrop-filter:{{ navBlur }};-webkit-backdrop-filter:{{ navBlur }};color:{{ navInk }};transition:background 240ms var(--ease-standard), color 240ms var(--ease-standard)">
+    <div style="max-width:1440px;height:100%;margin:0 auto;padding:0 clamp(20px,4.4vw,64px);display:flex;align-items:center;justify-content:space-between;gap:20px">
+      <a href="Home v2.dc.html" aria-label="Vyro Biotherapeutics" style="position:relative;display:block;width:178px;height:40px;flex:none">
+        <img src="assets/vyro-horizontal-white.png" alt="Vyro Biotherapeutics" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:left center;opacity:{{ logoW }};transition:opacity 240ms"></img>
+        <img src="assets/vyro-horizontal.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:left center;opacity:{{ logoC }};transition:opacity 240ms"></img>
+      </a>
+      <div style="display:flex;align-items:center;gap:clamp(12px,1.8vw,24px)">
+        <sc-if value="{{ desk }}" hint-placeholder-val="{{ true }}">
+          <nav aria-label="Principal" style="display:flex;align-items:center;gap:clamp(16px,1.9vw,32px)">
+            <a href="Home v2.dc.html#filme" style="color:inherit;font-size:15px;font-weight:500;text-decoration:none;white-space:nowrap">Descubra</a>
+            <a href="Tecnologia.dc.html" aria-current="page" style="color:inherit;font-size:15px;font-weight:600;text-decoration:none;white-space:nowrap;border-bottom:1px solid currentColor;padding-bottom:2px">Tecnologia</a>
+            <a href="Home v2.dc.html#pipeline" style="color:inherit;font-size:15px;font-weight:500;text-decoration:none;white-space:nowrap">Pipeline</a>
+            <a href="#publicacoes" style="color:inherit;font-size:15px;font-weight:500;text-decoration:none;white-space:nowrap">Publicações</a>
+            <a href="Home v2.dc.html#equipe" style="color:inherit;font-size:15px;font-weight:500;text-decoration:none;white-space:nowrap">Equipe</a>
+            <a href="Home v2.dc.html#imprensa" style="color:inherit;font-size:15px;font-weight:500;text-decoration:none;white-space:nowrap">Notícias</a>
+          </nav>
+        </sc-if>
+        <sc-if value="{{ navCta }}" hint-placeholder-val="{{ true }}">
+          <x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Button" variant="{{ navBtn }}" size="sm" as="a" href="#contato" hint-size="140px,36px">Fale com a Vyro</x-import>
+        </sc-if>
+        <sc-if value="{{ mob }}" hint-placeholder-val="{{ false }}">
+          <a href="Home v2.dc.html" style="color:inherit;font-size:14px;font-weight:600;text-decoration:none;border:1px solid currentColor;border-radius:999px;height:44px;display:inline-flex;align-items:center;padding:0 18px">Home</a>
+        </sc-if>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1 HERO -->
+  <section id="topo" data-tone="dark" data-ann="01 · HERO DA PÁGINA — Mais contido que o da home: 68vh, manifesto a 7,4vw. Linhas sobem de máscara, 1100ms, stagger 140ms. Textura à direita respira sem loop (senos de 17/23/29s)." style="position:relative;min-height:68vh;display:flex;align-items:flex-end;background:radial-gradient(120% 95% at 78% 20%, #1c0a4f 0%, #140638 48%, #0c0326 100%);color:#fff;overflow:hidden">
+    <div aria-hidden="true" style="position:absolute;top:-8%;right:-8%;width:{{ L.texW }};height:116%;opacity:.5;-webkit-mask-image:radial-gradient(closest-side, #000 25%, transparent 100%);mask-image:radial-gradient(closest-side, #000 25%, transparent 100%)">
+      <div data-breathe="" style="position:absolute;inset:0;transform:scale(1.08)"><img src="assets/virus-a.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></img></div>
+    </div>
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none"><div style="height:100%;max-width:1440px;margin:0 auto;padding:0 clamp(20px,4.4vw,64px)"><div style="height:100%;background-image:linear-gradient(to right, rgba(255,255,255,.07) 1px, transparent 1px);background-size:{{ L.gridBg }} 100%;border-right:1px solid rgba(255,255,255,.07)"></div></div></div>
+    <div style="position:relative;width:100%;max-width:1440px;margin:0 auto;padding:{{ L.heroTop }} clamp(20px,4.4vw,64px) clamp(48px,6vw,88px);display:flex;flex-direction:column;gap:clamp(28px,3.4vw,48px)">
+      <div data-rv="" style="display:flex;flex-wrap:wrap;align-items:center;gap:16px 20px">
+        <span style="display:inline-flex;align-items:center;gap:10px;height:32px;padding:0 14px;border:1px solid rgba(255,255,255,.28);border-radius:999px;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--indigo-100)"><i style="width:6px;height:6px;border-radius:50%;background:var(--signal-amber)"></i>[SELO DE ESTÁGIO A SUBSTITUIR]</span>
+        <x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Eyebrow" color="var(--indigo-200)" hint-size="110px,20px">Tecnologia</x-import>
+      </div>
+      <h1 style="margin:0;max-width:16em;font-family:var(--font-display);font-weight:800;font-size:{{ L.h1 }};line-height:.95;letter-spacing:-.045em;color:#fff">
+        <span data-rv="line" style="display:block;overflow:hidden;padding:.14em 0 .24em;margin:-.14em 0 -.2em;--d:80ms">[TÍTULO DA PÁGINA A</span>
+        <span data-rv="line" style="display:block;overflow:hidden;padding:.14em 0 .24em;margin:-.14em 0 -.1em;--d:220ms">SUBSTITUIR — DUAS LINHAS]</span>
+      </h1>
+      <p data-rv="" style="--d:420ms;margin:0;max-width:34em;min-height:4.4em;font-size:clamp(18px,1.6vw,22px);line-height:1.55;color:var(--indigo-100);text-wrap:pretty">[LINHA DE APOIO A SUBSTITUIR — uma ou duas frases que situam o leitor antes de ele descer para o mecanismo. Este campo foi dimensionado com folga para comportar um texto cerca de um terço maior que este.]</p>
+    </div>
+  </section>
+
+  <div style="display:flex;align-items:flex-start;gap:0;position:relative">
+    <sc-if value="{{ desk }}" hint-placeholder-val="{{ true }}">
+      <nav aria-label="Seções desta página" style="position:sticky;top:84px;flex:none;width:{{ L.navW }};height:calc(100vh - 84px);padding:clamp(40px,5vw,72px) 0 40px clamp(20px,4.4vw,64px);display:flex;flex-direction:column;gap:2px;background:var(--white);border-right:1px solid var(--grey-200);z-index:40">
+        <span style="margin-bottom:20px;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-600)">Nesta página</span>
+        <sc-for list="{{ toc }}" as="s" hint-placeholder-count="9">
+          <a href="{{ s.href }}" aria-current="{{ s.cur }}" style="display:flex;align-items:baseline;gap:12px;padding:9px 16px 9px 0;font-size:14px;line-height:1.3;text-decoration:none;color:{{ s.c }};border-left:2px solid {{ s.bd }};padding-left:14px;transition:color 240ms var(--ease-standard), border-color 240ms var(--ease-standard)" style-hover="color:var(--indigo-700)">
+            <span style="font-family:var(--font-mono);font-size:11px;opacity:.7">{{ s.n }}</span><span style="font-weight:{{ s.fw }}">{{ s.label }}</span>
+          </a>
+        </sc-for>
+      </nav>
+    </sc-if>
+    <sc-if value="{{ mob }}" hint-placeholder-val="{{ false }}">
+      <nav aria-label="Seções desta página" style="position:sticky;top:84px;z-index:40;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:12px 20px;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--grey-200)">
+        <sc-for list="{{ toc }}" as="s" hint-placeholder-count="9">
+          <a href="{{ s.href }}" aria-current="{{ s.cur }}" style="flex:none;height:36px;display:inline-flex;align-items:center;gap:8px;padding:0 14px;border-radius:999px;border:1px solid {{ s.mbd }};background:{{ s.mbg }};color:{{ s.mc }};font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap;transition:background 240ms var(--ease-standard), color 240ms var(--ease-standard)">{{ s.label }}</a>
+        </sc-for>
+      </nav>
+    </sc-if>
+
+    <main style="flex:1 1 auto;min-width:0">
+      <!-- 2 ABERTURA -->
+      <section id="abertura" data-tone="light" data-ann="02 · ABERTURA — Dois parágrafos em escala grande (clamp 24–39px). Reveal sobe 32px, 1100ms, segundo parágrafo +160ms." style="position:relative;background:var(--white);padding:clamp(80px,9vw,144px) 0">
+        <div style="max-width:1100px;margin:0 auto;padding:0 clamp(20px,4.4vw,64px)">
+          <div style="display:flex;align-items:center;gap:14px;color:var(--indigo-700)"><span style="width:40px;height:1px;background:currentColor"></span><x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Eyebrow" hint-size="100px,20px">Abertura</x-import></div>
+          <div style="display:flex;flex-direction:column;gap:clamp(24px,2.6vw,40px);margin-top:clamp(32px,4vw,56px)">
+            <p data-rv="" style="margin:0;min-height:5.2em;font-size:clamp(24px,2.7vw,39px);font-weight:300;line-height:1.3;letter-spacing:-.02em;color:var(--ink);text-wrap:pretty">[PRIMEIRO PARÁGRAFO DE CONTEXTO A SUBSTITUIR — o que é a tecnologia, em linguagem que um jornalista entende sem precisar de glossário. Este campo foi dimensionado com cerca de 30% de folga em relação ao texto que está aqui, então pode receber um parágrafo mais longo sem quebrar o ritmo da página.]</p>
+            <p data-rv="" style="--d:160ms;margin:0;min-height:5.2em;font-size:clamp(24px,2.7vw,39px);font-weight:300;line-height:1.3;letter-spacing:-.02em;color:var(--grey-700);text-wrap:pretty">[SEGUNDO PARÁGRAFO DE CONTEXTO A SUBSTITUIR — por que essa abordagem é diferente do que já existe, e o que ela ainda precisa provar. Mesmo dimensionamento do parágrafo anterior, com folga para um texto cerca de um terço maior.]</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3 QUATRO ETAPAS -->
+      <section id="etapas" data-tone="dark" data-ann="03 · EM QUATRO ETAPAS — Pin de 480vh. Imagem fixa evolui: as três micrografias fazem crossfade de 900ms conforme a etapa avança, com escala contínua de 1.00 a 1.10 ligada ao scroll (a quarta etapa reaproveita a terceira imagem em outro enquadramento). Texto: saída −24px, entrada +24px, 520ms. Trilha de progresso de quatro traços acompanha a etapa." style="position:relative;height:{{ L.stH }};background:#0c0326">
+        <div style="position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#0c0326;color:#fff">
+          <div style="position:absolute;inset:0;display:grid;grid-template-columns:{{ L.stCols }};grid-template-rows:{{ L.stRows }}">
+            <div style="position:relative;overflow:hidden;background:var(--indigo-900)">
+              <div data-stimg="" style="position:absolute;inset:0"><image-slot id="tec-etapa-1" shape="rect" src="assets/tumor-a.jpg" placeholder="Micrografia de fundo escuro · etapa 01" style="display:block;width:100%;height:100%"></image-slot></div>
+              <div data-stimg="" style="position:absolute;inset:0;opacity:0"><image-slot id="tec-etapa-2" shape="rect" src="assets/cells-b.jpg" placeholder="Micrografia de fundo escuro · etapa 02" style="display:block;width:100%;height:100%"></image-slot></div>
+              <div data-stimg="" style="position:absolute;inset:0;opacity:0"><image-slot id="tec-etapa-3" shape="rect" src="assets/virus-attack.jpg" placeholder="Micrografia de fundo escuro · etapa 03" style="display:block;width:100%;height:100%"></image-slot></div>
+              <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(to top, rgba(12,3,38,.7), rgba(12,3,38,.1));pointer-events:none"></div>
+              <p data-stcap="" style="position:absolute;left:clamp(16px,2vw,28px);right:clamp(16px,2vw,28px);bottom:clamp(16px,2vw,28px);margin:0;min-height:3em;font-family:var(--font-mono);font-size:11px;line-height:1.5;letter-spacing:.06em;color:var(--indigo-100);pointer-events:none">{{ stepCap }}</p>
+            </div>
+            <div style="position:relative;display:flex;flex-direction:column;justify-content:center;gap:clamp(20px,3vh,40px);padding:{{ L.stPad }};min-width:0">
+              <div style="display:flex;align-items:center;gap:14px;color:var(--indigo-200)">
+                <x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Eyebrow" color="var(--indigo-200)" hint-size="150px,20px">Em quatro etapas</x-import>
+                <span style="margin-left:auto;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em">{{ stepLabel }} / 04</span>
+              </div>
+              <div style="display:grid">
+                <sc-for list="{{ steps }}" as="sp" hint-placeholder-count="4">
+                  <div aria-hidden="{{ sp.ah }}" style="grid-area:1 / 1;opacity:{{ sp.o }};transform:translateY({{ sp.y }});transition:opacity 520ms var(--ease-standard), transform 520ms var(--ease-standard)">
+                    <p style="margin:0 0 16px;font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--signal-teal)">Etapa {{ sp.n }}</p>
+                    <h2 style="margin:0 0 20px;min-height:2em;font-size:{{ L.stH2 }};font-weight:700;line-height:1.02;letter-spacing:-.035em;color:#fff;text-wrap:pretty">{{ sp.h }}</h2>
+                    <p style="margin:0 0 14px;max-width:32em;min-height:4.6em;font-size:clamp(16px,1.25vw,18px);line-height:1.6;color:var(--indigo-100);text-wrap:pretty">{{ sp.p1 }}</p>
+                    <p style="margin:0;max-width:32em;min-height:4.6em;font-size:clamp(16px,1.25vw,18px);line-height:1.6;color:var(--indigo-200);text-wrap:pretty">{{ sp.p2 }}</p>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="display:flex;gap:6px;max-width:32em" aria-hidden="true">
+                <sc-for list="{{ rails }}" as="r" hint-placeholder-count="4"><span style="position:relative;flex:1;height:2px"><i style="position:absolute;inset:0;background:#fff;opacity:.2"></i><i style="position:absolute;inset:0;background:var(--signal-teal);transform-origin:left;transform:scaleX({{ r.k }});transition:transform 320ms var(--ease-standard)"></i></span></sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 LINHA 01 -->
+      <section id="linha-01" data-tone="light" data-ann="04 · LINHA 01 — Página inteira em branco. Imagem grande a 62vh com reveal em escala 1.04→1.00 (1100ms). Características numeradas em régua tipográfica; hover em indigo, 240ms." style="position:relative;background:var(--white);padding:clamp(88px,10vw,160px) 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4.4vw,64px)">
+          <div style="display:flex;align-items:center;gap:14px;color:var(--indigo-700)"><span style="font-family:var(--font-mono);font-size:12px;letter-spacing:.06em">Linha 01</span><span style="width:40px;height:1px;background:currentColor"></span><x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Eyebrow" hint-size="140px,20px">Plataforma</x-import></div>
+          <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px 48px;margin-top:28px">
+            <h2 data-rv="" style="margin:0;max-width:14em;min-height:1.1em;font-size:clamp(36px,5vw,76px);font-weight:800;line-height:1;letter-spacing:-.04em;color:var(--ink);text-wrap:pretty">[NOME E CHAMADA DA LINHA 01 A SUBSTITUIR]</h2>
+            <p data-rv="" style="--d:120ms;margin:0;flex:0 1 320px;font-family:var(--font-mono);font-size:12px;line-height:1.6;letter-spacing:.06em;color:var(--grey-600);text-wrap:pretty">[CLASSIFICAÇÃO TÉCNICA A SUBSTITUIR — tipo de plataforma, alvo e via de administração]</p>
+          </div>
+          <div data-rv="" style="--d:200ms;position:relative;margin-top:clamp(40px,5vw,72px);height:{{ L.bigH }};border-radius:var(--radius-xl);overflow:hidden;background:var(--indigo-900)">
+            <image-slot id="tec-linha-01" shape="rect" src="assets/virus-b.jpg" placeholder="Imagem grande · plataforma Linha 01" style="display:block;width:100%;height:100%"></image-slot>
+          </div>
+          <p style="margin:16px 0 0;font-family:var(--font-mono);font-size:11px;line-height:1.5;letter-spacing:.06em;color:var(--grey-600)">[LEGENDA TÉCNICA A SUBSTITUIR — o que a imagem mostra, técnica e escala]</p>
+          <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,4vw,64px);margin-top:clamp(48px,6vw,88px)">
+            <div style="flex:3 1 460px;display:flex;flex-direction:column;gap:20px">
+              <p data-rv="" style="margin:0;min-height:5.4em;font-size:clamp(17px,1.4vw,20px);line-height:1.65;color:var(--ink);text-wrap:pretty">[PARÁGRAFO 1 A SUBSTITUIR — o que é a plataforma e de onde ela vem. Campo dimensionado com cerca de 30% de folga em relação a este texto.]</p>
+              <p data-rv="" style="--d:120ms;margin:0;min-height:5.4em;font-size:clamp(17px,1.4vw,20px);line-height:1.65;color:var(--grey-700);text-wrap:pretty">[PARÁGRAFO 2 A SUBSTITUIR — como ela age e o que já foi observado nos estudos pré-clínicos. Mesmo dimensionamento, com folga para um texto mais longo.]</p>
+              <p data-rv="" style="--d:240ms;margin:0;min-height:5.4em;font-size:clamp(17px,1.4vw,20px);line-height:1.65;color:var(--grey-700);text-wrap:pretty">[PARÁGRAFO 3 A SUBSTITUIR — em que estágio está e qual é o próximo passo de desenvolvimento. Mesmo dimensionamento dos anteriores.]</p>
+            </div>
+            <ol style="flex:2 1 320px;list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)">
+              <sc-for list="{{ feats }}" as="f" hint-placeholder-count="4">
+                <li data-rv="fade" style="--d:{{ f.d }};display:flex;gap:16px;padding:clamp(18px,2vw,26px) 0;border-bottom:1px solid var(--grey-300)">
+                  <span style="flex:none;font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--grey-600);padding-top:6px">{{ f.n }}</span>
+                  <span style="display:flex;flex-direction:column;gap:8px"><span style="font-size:clamp(19px,1.7vw,24px);font-weight:700;letter-spacing:-.02em;color:var(--ink);text-wrap:pretty">{{ f.h }}</span><span style="min-height:3em;font-size:15px;line-height:1.55;color:var(--grey-700);text-wrap:pretty">{{ f.p }}</span></span>
+                </li>
+              </sc-for>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 LINHA 02 -->
+      <section id="linha-02" data-tone="dark" data-ann="05 · LINHA 02 — Mesma estrutura da Linha 01, invertida em indigo-900 e com a imagem à esquerda em coluna de 5/7, para diferenciar sem criar um segundo sistema." style="position:relative;background:var(--indigo-900);color:#fff;padding:clamp(88px,10vw,160px) 0">
+        <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none"><div style="height:100%;max-width:1280px;margin:0 auto;padding:0 clamp(20px,4.4vw,64px)"><div style="height:100%;background-image:linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px);background-size:{{ L.gridBg }} 100%;border-right:1px solid rgba(255,255,255,.06)"></div></div></div>
+        <div style="position:relative;max-width:1280px;margin:0 auto;padding:0 clamp(20px,4.4vw,64px)">
+          <div style="display:flex;align-items:center;gap:14px;color:var(--indigo-200)"><span style="font-family:var(--font-mono);font-size:12px;letter-spacing:.06em">Linha 02</span><span style="width:40px;height:1px;background:currentColor"></span><x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Eyebrow" color="var(--indigo-200)" hint-size="140px,20px">Plataforma</x-import></div>
+          <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px 48px;margin-top:28px">
+            <h2 data-rv="" style="margin:0;max-width:14em;min-height:1.1em;font-size:clamp(36px,5vw,76px);font-weight:800;line-height:1;letter-spacing:-.04em;color:#fff;text-wrap:pretty">[NOME E CHAMADA DA LINHA 02 A SUBSTITUIR]</h2>
+            <p data-rv="" style="--d:120ms;margin:0;flex:0 1 320px;font-family:var(--font-mono);font-size:12px;line-height:1.6;letter-spacing:.06em;color:var(--indigo-200);text-wrap:pretty">[CLASSIFICAÇÃO TÉCNICA A SUBSTITUIR — tipo de plataforma, carga e aplicação prevista]</p>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:clamp(32px,4vw,64px);margin-top:clamp(40px,5vw,72px)">
+            <div style="flex:5 1 380px;min-width:0">
+              <div data-rv="" style="position:relative;height:{{ L.bigH }};border-radius:var(--radius-xl);overflow:hidden;background:#0c0326">
+                <image-slot id="tec-linha-02" shape="rect" src="assets/molecule-a.jpg" placeholder="Imagem grande · plataforma Linha 02" style="display:block;width:100%;height:100%"></image-slot>
+              </div>
+              <p style="margin:16px 0 0;font-family:var(--font-mono);font-size:11px;line-height:1.5;letter-spacing:.06em;color:var(--indigo-200)">[LEGENDA TÉCNICA A SUBSTITUIR — o que a imagem mostra, técnica e escala]</p>
+            </div>
+            <div style="flex:7 1 460px;min-width:0;display:flex;flex-direction:column;gap:20px">
+              <p data-rv="" style="margin:0;min-height:5.4em;font-size:clamp(17px,1.4vw,20px);line-height:1.65;color:#fff;text-wrap:pretty">[PARÁGRAFO 1 A SUBSTITUIR — o que a Linha 02 entrega que a Linha 01 não entrega. Campo com cerca de 30% de folga em relação a este texto.]</p>
+              <p data-rv="" style="--d:120ms;margin:0;min-height:5.4em;font-size:clamp(17px,1.4vw,20px);line-height:1.65;color:var(--indigo-100);text-wrap:pretty">[PARÁGRAFO 2 A SUBSTITUIR — como a carga é transportada e o que isso abre em termos de aplicação. Mesmo dimensionamento.]</p>
+              <p data-rv="" style="--d:240ms;margin:0;min-height:5.4em;font-size:clamp(17px,1.4vw,20px);line-height:1.65;color:var(--indigo-100);text-wrap:pretty">[PARÁGRAFO 3 A SUBSTITUIR — estágio atual e próximos passos. Mesmo dimensionamento dos anteriores.]</p>
+              <ol style="list-style:none;margin:12px 0 0;padding:0;border-top:2px solid rgba(255,255,255,.4)">
+                <sc-for list="{{ feats2 }}" as="f" hint-placeholder-count="3">
+                  <li data-rv="fade" style="--d:{{ f.d }};display:flex;gap:16px;padding:clamp(18px,2vw,26px) 0;border-bottom:1px solid rgba(255,255,255,.18)">
+                    <span style="flex:none;font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--indigo-200);padding-top:6px">{{ f.n }}</span>
+                    <span style="display:flex;flex-direction:column;gap:8px"><span style="font-size:clamp(19px,1.7vw,24px);font-weight:700;letter-spacing:-.02em;color:#fff;text-wrap:pretty">{{ f.h }}</span><span style="min-height:3em;font-size:15px;line-height:1.55;color:var(--indigo-100);text-wrap:pretty">{{ f.p }}</span></span>
+                  </li>
+                </sc-for>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- 6 DADOS DE PESQUISA -->
+      <section id="dados" data-tone="light" data-ann="06 · DADOS DE PESQUISA — Seção mais importante. Blocos entram por fade de 700ms, sem deslocamento, para não competir com a leitura das imagens. Imagens não têm hover nem zoom automático; clique abre em tamanho natural numa nova aba quando houver arquivo final." style="position:relative;background:var(--grey-50);padding:clamp(88px,10vw,160px) 0 0">
+        <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4.4vw,64px)">
+          <div style="display:flex;align-items:center;gap:14px;color:var(--indigo-700)"><span style="width:40px;height:1px;background:currentColor"></span><x-import component-from-global-scope="VyroBiotherapeuticsDesignSystem_a41d10.Eyebrow" hint-size="160px,20px">Dados de pesquisa</x-import></div>
+          <h2 data-rv="" style="margin:28px 0 0;max-width:14em;min-height:1.1em;font-size:clamp(40px,5.6vw,84px);font-weight:800;line-height:.98;letter-spacing:-.035em;color:var(--ink);text-wrap:pretty">[TÍTULO DA SEÇÃO A SUBSTITUIR]</h2>
+          <p data-rv="" style="--d:120ms;margin:24px 0 0;max-width:40em;min-height:3.4em;font-size:clamp(17px,1.4vw,20px);line-height:1.6;color:var(--grey-700);text-wrap:pretty">[INTRODUÇÃO A SUBSTITUIR — uma frase que diz ao leitor o que os três blocos abaixo demonstram, com cerca de 30% de folga.]</p>
+
+          <!-- 6a -->
+          <article id="dados-a" data-rv="fade" style="margin-top:clamp(56px,7vw,104px)">
+            <header style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px 32px;padding-bottom:20px;border-bottom:2px solid var(--ink)">
+              <h3 style="margin:0;min-height:1.2em;font-size:clamp(24px,2.4vw,34px);font-weight:700;letter-spacing:-.025em;color:var(--ink)"><span style="font-family:var(--font-mono);font-size:13px;font-weight:500;letter-spacing:.06em;color:var(--indigo-700);margin-right:14px">6a</span>[TÍTULO DO BLOCO A SUBSTITUIR]</h3>
+            </header>
+            <div style="display:flex;flex-wrap:wrap;gap:24px;margin-top:28px">
+              <figure style="flex:3 1 520px;min-width:0;margin:0;display:flex;flex-direction:column;gap:14px">
+                <div style="padding:clamp(14px,1.6vw,24px);border-radius:var(--radius-lg);background:#0c0326">
+                  <div style="display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:clamp(6px,.8vw,12px)">
+                    <sc-for list="{{ strip }}" as="q" hint-placeholder-count="4">
+                      
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;annotations&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;label&quot;:&quot;Anotações de movimento&quot;},&quot;reduceMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;label&quot;:&quot;Simular prefers-reduced-motion&quot;},&quot;sideNav&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;label&quot;:&quot;Menu lateral fixo&quot;}}">
+class Component extends DCLogic { renderVals(){ return { L:{}, toc:[], steps:[], rails:[], feats:[], feats2:[] }; } }
+</script>
+</body>
+</html>

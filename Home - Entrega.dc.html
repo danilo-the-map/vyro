@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="design_doc_mode" content="canvas">
+  <link rel="stylesheet" href="_ds/vyro-biotherapeutics-design-system-a41d101f-dcb3-4af5-b03d-412de5825624/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/vyro-biotherapeutics-design-system-a41d101f-dcb3-4af5-b03d-412de5825624/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/vyro-biotherapeutics-design-system-a41d101f-dcb3-4af5-b03d-412de5825624/tokens/layout.css">
+  <link rel="stylesheet" href="_ds/vyro-biotherapeutics-design-system-a41d101f-dcb3-4af5-b03d-412de5825624/tokens/base.css">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#e9e8ee}
+    a{color:var(--indigo-700)}
+    a:hover{color:var(--indigo-500)}
+  </style>
+</helmet>
+<div style="font-family:var(--font-body);color:var(--ink);padding:64px 72px 96px;display:flex;flex-direction:column;gap:72px;width:max-content">
+
+  <header style="display:flex;justify-content:space-between;align-items:flex-end;gap:48px;width:2008px">
+    <div>
+      <p style="margin:0 0 16px;font-family:var(--font-mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-600)">Entrega 02 · Home institucional bilíngue · out 2026</p>
+      <h1 style="margin:0;font-size:76px;font-weight:800;line-height:.95;letter-spacing:-.04em;color:var(--indigo-700)">De inimigo a aliado.</h1>
+    </div>
+    <p style="margin:0;max-width:560px;font-size:17px;line-height:1.6;color:var(--grey-700)">As quatro telas abaixo são a mesma página, viva: role dentro de cada uma. C e D mostram as anotações de movimento por seção e o contorno âmbar em todo texto substituível. Nos Tweaks de <a href="Home v2.dc.html">Home v2.dc.html</a> dá para ligar as anotações, simular prefers-reduced-motion, trocar a textura do hero e o estágio de cada programa no pipeline. PT | EN fica no header.</p>
+  </header>
+
+  <section style="display:flex;gap:48px;align-items:flex-start">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <p style="margin:0;font-family:var(--font-mono);font-size:13px;letter-spacing:.08em;color:var(--grey-700)">A · DESKTOP 1440</p>
+      <iframe src="Home v2.dc.html" title="Home desktop 1440" style="width:1440px;height:900px;border:0;border-radius:12px;background:#0c0326;box-shadow:var(--shadow-lg)"></iframe>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <p style="margin:0;font-family:var(--font-mono);font-size:13px;letter-spacing:.08em;color:var(--grey-700)">B · MOBILE 390</p>
+      <iframe src="Home v2.dc.html" title="Home mobile 390" style="width:390px;height:844px;border:0;border-radius:28px;background:#0c0326;box-shadow:var(--shadow-lg)"></iframe>
+    </div>
+  </section>
+
+  <section style="display:flex;gap:48px;align-items:flex-start">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <p style="margin:0;font-family:var(--font-mono);font-size:13px;letter-spacing:.08em;color:var(--grey-700)">C · DESKTOP 1440 COM ANOTAÇÕES</p>
+      <iframe src="Home v2.dc.html?ann=1" title="Home desktop anotada" style="width:1440px;height:900px;border:0;border-radius:12px;background:#0c0326;box-shadow:var(--shadow-lg)"></iframe>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <p style="margin:0;font-family:var(--font-mono);font-size:13px;letter-spacing:.08em;color:var(--grey-700)">D · MOBILE 390 COM ANOTAÇÕES</p>
+      <iframe src="Home v2.dc.html?ann=1" title="Home mobile anotada" style="width:390px;height:844px;border:0;border-radius:28px;background:#0c0326;box-shadow:var(--shadow-lg)"></iframe>
+    </div>
+  </section>
+
+  <section style="width:2008px;background:var(--white);border-radius:16px;padding:64px 72px;display:grid;grid-template-columns:320px 1fr;gap:64px">
+    <div>
+      <p style="margin:0 0 12px;font-family:var(--font-mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-600)">Nota</p>
+      <h2 style="margin:0;font-size:39px;font-weight:800;line-height:1.05;letter-spacing:-.03em;color:var(--ink)">Direção de arte</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:48px 56px">
+      <div><h3 style="margin:0 0 12px;font-size:20px;font-weight:700;color:var(--indigo-700)">Escala</h3><p style="margin:0;font-size:16px;line-height:1.65;color:var(--grey-700)">O sistema tem uma família só (NOKA), então a hierarquia vem de escala e peso. Display a 10,4vw (teto de 172px) com tracking −0,05em, números a 19vw, corpo fixo em 17–19px. A distância de ~9× entre display e corpo dá o tom editorial. A fonte do dado fica em IBM Plex Mono 11px: o número fala, a evidência sussurra ao lado.</p></div>
+      <div><h3 style="margin:0 0 12px;font-size:20px;font-weight:700;color:var(--indigo-700)">Grid</h3><p style="margin:0;font-size:16px;line-height:1.65;color:var(--grey-700)">Doze colunas desenhadas como hairlines (quatro no mobile): a retícula do microscópio aplicada ao layout. As quebras são deliberadas: a faixa do marco atravessa sem grid, a foto do laboratório sangra e é recortada pelo painel de texto, os números alternam esquerda e direita. Territórios em 7/5 com 200px de desnível; retratos com offsets de 0, 120, 40 e 176px.</p></div>
+      <div><h3 style="margin:0 0 12px;font-size:20px;font-weight:700;color:var(--indigo-700)">A virada</h3><p style="margin:0;font-size:16px;line-height:1.65;color:var(--grey-700)">A luz entra por uma abertura circular que nasce no centro da ilustração, como o diafragma de um microscópio. O mesmo campo de células existe em versão escura e clara, e a abertura revela a clara por cima. O texto some enquanto a borda da luz passa e volta em tinta escura. A seção 4 já começa branca, então não há corte: a página segue dentro da luz.</p></div>
+      <div><h3 style="margin:0 0 12px;font-size:20px;font-weight:700;color:var(--indigo-700)">Arco de cor</h3><p style="margin:0;font-size:16px;line-height:1.65;color:var(--grey-700)">Indigo-900 no hero, ainda mais fundo na seção 2, virada para o branco, resolução em branco e grey-50. Um único retorno ao indigo-700 na faixa do marco, como prova. Vermelho e teal só como sinal: vermelho marca o alvo e a sobrevida, teal marca a resposta.</p></div>
+      <div><h3 style="margin:0 0 12px;font-size:20px;font-weight:700;color:var(--indigo-700)">Fechamento</h3><p style="margin:0;font-size:16px;line-height:1.65;color:var(--grey-700)">"Vamos conversar." repete a escala exata do manifesto, mas em peso 300 e indigo-700 sobre branco. É o mesmo gesto da abertura, agora leve: o contraste de peso conta o arco sem precisar de mais nenhum elemento.</p></div>
+      <div><h3 style="margin:0 0 12px;font-size:20px;font-weight:700;color:var(--indigo-700)">Imagem</h3><p style="margin:0;font-size:16px;line-height:1.65;color:var(--grey-700)">Micrografias da biblioteca do design system: imunofluorescência no hero e nos territórios, em luminosity sobre indigo. Retratos e laboratório recebem uma camada indigo em modo color, que unifica qualquer foto enviada. A ilustração da virada é gerada em código, sem figuras científicas inventadas.</p></div>
+    </div>
+  </section>
+
+  <section style="width:2008px;background:var(--white);border-radius:16px;padding:64px 72px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:grid;grid-template-columns:320px 1fr;gap:64px;align-items:end">
+      <div>
+        <p style="margin:0 0 12px;font-family:var(--font-mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-600)">Especificação</p>
+        <h2 style="margin:0;font-size:39px;font-weight:800;line-height:1.05;letter-spacing:-.03em;color:var(--ink)">Scroll e movimento</h2>
+      </div>
+      <p style="margin:0;max-width:1100px;font-size:16px;line-height:1.65;color:var(--grey-700)">Easing único do design system, <span style="font-family:var(--font-mono);font-size:14px">cubic-bezier(.22,.61,.36,1)</span>, em 240 / 480 / 900 / 1100ms. Sem bounce, sem overshoot. Reveals por IntersectionObserver com margem inferior de 12%. Scroll nativo; o progresso da virada é lido em requestAnimationFrame. Com <strong>prefers-reduced-motion</strong>: reveals viram fade de 700ms sem deslocamento, contagens já mostram o valor final, textura, indicador e faixa de veículos ficam parados, parallax desligado; na virada a ilustração continua respondendo ao scroll, sem deriva, e a luz entra por crossfade em vez de abertura.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:200px 1fr 1fr 1.25fr;border-top:2px solid var(--ink)">
+      <div style="padding:14px 16px 14px 0;font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;color:var(--grey-600);border-bottom:1px solid var(--grey-300)">SEÇÃO</div>
+      <div style="padding:14px 16px;font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;color:var(--grey-600);border-bottom:1px solid var(--grey-300)">DESKTOP 1440</div>
+      <div style="padding:14px 16px;font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;color:var(--grey-600);border-bottom:1px solid var(--grey-300)">MOBILE 390 (REDESENHO)</div>
+      <div style="padding:14px 16px;font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;color:var(--grey-600);border-bottom:1px solid var(--grey-300)">MOVIMENTO · TIMING · EASING</div>
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="11">
+        <div style="padding:18px 16px 18px 0;border-bottom:1px solid var(--grey-200);display:flex;gap:12px;align-items:baseline"><span style="font-family:var(--font-mono);font-size:12px;color:var(--grey-500)">{{ r.n }}</span><span style="font-size:17px;font-weight:700;color:var(--ink)">{{ r.t }}</span></div>
+        <div style="padding:18px 16px;border-bottom:1px solid var(--grey-200);font-size:15px;line-height:1.55;color:var(--grey-700)">{{ r.d }}</div>
+        <div style="padding:18px 16px;border-bottom:1px solid var(--grey-200);font-size:15px;line-height:1.55;color:var(--grey-700)">{{ r.m }}</div>
+        <div style="padding:18px 16px;border-bottom:1px solid var(--grey-200);font-size:15px;line-height:1.55;color:var(--ink)">{{ r.x }}</div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="width:2008px;display:grid;grid-template-columns:1fr 1fr;gap:32px">
+    <div style="background:var(--white);border-radius:16px;padding:56px 64px">
+      <p style="margin:0 0 12px;font-family:var(--font-mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-600)">Conteúdo</p>
+      <h2 style="margin:0 0 24px;font-size:31px;font-weight:800;letter-spacing:-.03em;color:var(--ink)">Texto substituível</h2>
+      <div style="display:flex;flex-direction:column;gap:14px;font-size:16px;line-height:1.6;color:var(--grey-700)">
+        <p style="margin:0">Todo bloco com contorno tracejado âmbar nas telas anotadas é conteúdo editável (atributo <span style="font-family:var(--font-mono);font-size:14px">data-rep</span>, vira campo de CMS). Os textos são os do copy deck (PT). Itens entre colchetes aguardam validação do cliente e aparecem como vieram, para não sumirem da revisão.</p>
+        <p style="margin:0">Retratos e a foto do laboratório são slots de imagem: arraste a foto sobre o retângulo. Veículos e ecossistema aparecem com o nome em texto até chegarem os logos autorizados. A coluna de texto da virada comporta apoios até 40% mais longos sem mexer no layout, porque as quatro etapas dividem a mesma célula de grid.</p>
+        
+      </div>
+    </div>
+    <div style="background:var(--white);border-radius:16px;padding:56px 64px">
+      <p style="margin:0 0 12px;font-family:var(--font-mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-600)">Implementação</p>
+      <h2 style="margin:0 0 24px;font-size:31px;font-weight:800;letter-spacing:-.03em;color:var(--ink)">Estrutura Next.js</h2>
+      <div style="display:flex;flex-direction:column;gap:14px;font-size:16px;line-height:1.6;color:var(--grey-700)">
+        <p style="margin:0"><span style="font-family:var(--font-mono);font-size:14px;color:var(--ink)">app/page.tsx</span> compõe onze seções: Hero, Problem, Mechanism, ResearchLines, Milestone, Leadership, Lab, Press, Ecosystem, Contact, Footer. Server components por padrão; só Nav, Mechanism (canvas + progresso de scroll), Press (marquee) e Contact (formulário) são client.</p>
+        <p style="margin:0">Dois hooks bastam: <span style="font-family:var(--font-mono);font-size:14px;color:var(--ink)">useReveal</span> (IntersectionObserver, adiciona a classe de entrada) e <span style="font-family:var(--font-mono);font-size:14px;color:var(--ink)">useScrollProgress</span> (rAF, devolve 0–1 da seção pinada). Sem biblioteca de animação obrigatória.</p>
+        <p style="margin:0">Conteúdo tipado em <span style="font-family:var(--font-mono);font-size:14px;color:var(--ink)">content/home.ts</span> ou no CMS, um campo por bloco marcado. Tokens do design system como CSS variables globais; fotos via next/image com sizes por breakpoint. Breakpoint estrutural único em 760px; o resto é fluido com clamp().</p>
+      </div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      rows: [
+        { n: '01', t: 'Hero', d: 'Manifesto em duas linhas, 11 de 12 colunas, ancorado na base. Selo e apoio no topo. Micrografia em máscara radial à direita.', m: 'Manifesto a 13,4vw. Selo, manifesto, apoio, CTAs em largura total.', x: 'Linhas sobem de máscara, 1100ms, stagger 140ms. Textura respira sem loop perceptível: senos de 17/23/29s e crossfade de foco (11s × 5,7s). Partículas e moléculas em três profundidades, girando e derivando, com plano de foco móvel. Saída: conteúdo sobe 80px e some.' },
+        { n: '02', t: 'Hero de vídeo', d: 'Pin de 200vh. Imagem sangrada recua para moldura com inset 96/64/48 e raio 24. Título embaixo à esquerda, play ao centro com 'Assista e descubra', cursor customizado. Fundo vivo: imagem respira e moléculas flutuam.', m: 'Sem pin. Imagem em tela cheia, play centralizado, vídeo em tela cheia nativa.', x: 'Título, apoio e play entram juntos ao chegar na seção (máscara 1100ms; play 700/900ms; pulso 2,4s). Com o scroll, scale 1.32→1.00 e a moldura fecha. Vídeo inicia automaticamente ao abrir. Clique: expansão de 720ms até a viewport, header some, página trava. Controles somem após 2s. Esc/X devolvem ao ponto.' },
+        { n: '03', t: 'O problema', d: 'Título em 8 colunas, contexto em 4. Números a 19vw alternando lados.', m: 'Coluna única; número a 96px.', x: 'Contagem 0→valor em 1400ms; legenda e fonte entram só depois que o número assenta (+80ms, 600ms).' },
+        { n: '04', t: 'Como funciona', d: 'Pin de 520vh. Ilustração com centro a 68%; texto à esquerda.', m: 'Pin de 560vh. Ilustração no topo; texto na base.', x: 'Contorno contínuo de 180 pontos que se transforma entre cinco formas. Etapas a cada 18% (480ms). 80→94%: abertura circular da luz.' },
+        { n: '05', t: 'Plataformas', d: 'Territórios 7/5, o segundo 200px abaixo.', m: 'Empilhados; toque alterna o estado.', x: 'Hover: painel indigo sobe (640ms), tinta inverte (480ms).' },
+        { n: '06', t: 'Pipeline', d: 'Sete estágios em colunas, duas linhas de programa. Sem anos.', m: 'Tabela transposta: estágios em linhas, programas em colunas verticais.', x: 'Barras crescem da esquerda (1200ms), ZIKVV +320ms; marcador entra quando a barra assenta. Hover no estágio: coluna destaca e a definição troca em 240ms.' },
+        { n: '07', t: 'Marco FAPESP', d: 'Faixa indigo de largura total; "24" a 27vw; régua de 24 meses.', m: '"24" a 168px.', x: 'Contagem 0→24 em 1400ms; ticks em sequência de 40ms.' },
+        { n: '08', t: 'Publicações', d: 'Lista de referência: número, periódico e ano, título, link.', m: 'Empilhado.', x: 'Linhas em fade de 600ms, stagger 120ms; hover em indigo, 240ms.' },
+        { n: '09', t: 'Liderança', d: 'Quatro retratos 3:4 com offsets.', m: 'Carrossel com snap.', x: 'Hover no retrato: 1.00→1.05 em 900ms; contexto sobe 12px.' },
+        { n: '10', t: 'Laboratório', d: 'Foto sangrada a 92vh; painel recorta 240px da base.', m: 'Foto a 68vh; painel recorta 48px.', x: 'Parallax a 0.12× do scroll.' },
+        { n: '11', t: 'Linha do tempo', d: 'Faixa horizontal com drag, trackpad e setas. Marco ativo ao centro.', m: 'Vertical, marcos revelados no scroll.', x: 'Inércia com atrito 0.94/quadro e encaixe no marco mais próximo. Ativo em 1.00/100%, vizinhos 0.82/38% (480ms). Linha se preenche com a posição.' },
+        { n: '12', t: 'Na mídia', d: 'Cards 6/3/3 com régua superior; veículo em selo pequeno ao lado do CTA.', m: 'Cards empilhados.', x: 'Reveal escalonado de 120ms; hover em indigo, 240ms.' },
+        { n: '13', t: 'Ecossistema', d: 'Tabela técnica de parceiros, apoiadores e investidores.', m: 'Rótulo acima; células em duas colunas.', x: 'Fade de 600ms com stagger de 120ms.' },
+        { n: '14', t: 'Contato', d: '"Vamos conversar." na escala do manifesto em peso 300. Formulário de linha de base.', m: 'Coluna única.', x: 'Título por máscara (1100ms); aviso a pacientes ao escolher o assunto.' },
+        { n: '15', t: 'Footer', d: 'Boilerplate, newsletter, navegação, aviso de estágio.', m: 'Navegação em 2×2.', x: 'Só estados de link e foco.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

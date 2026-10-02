@@ -1,0 +1,74 @@
+/* Vyro Biotherapeutics — Color tokens
+   Sourced from the brand logo (indigo wordmark #270F70, virus mark #929292)
+   and the vyrobio.com marketing site (dark indigo grounds, clinical whites).
+   Ramps derived in OKLCH from the two anchor colors for harmony. */
+:root{
+  /* ---- Brand indigo (primary) ---- */
+  --indigo-900:#140638;
+  --indigo-800:#1c0a4f;
+  --indigo-700:#270f70;   /* core brand — the VYRO wordmark */
+  --indigo-600:#341a8c;
+  --indigo-500:#4a2db0;
+  --indigo-400:#6a51c7;
+  --indigo-300:#9384dc;
+  --indigo-200:#c3b9ee;
+  --indigo-100:#e7e1f8;
+  --indigo-50:#f4f1fc;
+
+  /* ---- Neutrals (the virus mark grey → clinical greys) ---- */
+  --ink:#16151a;          /* near-black body text / "Biotherapeutics" */
+  --grey-700:#4b4a52;
+  --grey-600:#6c6b73;
+  --grey-500:#929292;     /* virus-mark grey */
+  --grey-400:#b6b6ba;
+  --grey-300:#d3d3d7;
+  --grey-200:#e6e6e9;
+  --grey-100:#f2f2f4;
+  --grey-50:#f9f9fb;
+  --white:#ffffff;
+
+  /* ---- Science signal accents (from the pipeline/technology visuals) ---- */
+  --signal-red:#e23b4e;    /* oncolysis / cancer-cell visuals, data alert */
+  --signal-red-soft:#fbe6e9;
+  --signal-teal:#1fb6b0;   /* immune-response / "hero" accent */
+  --signal-teal-soft:#e2f6f5;
+  --signal-amber:#e8a13a;
+  --signal-amber-soft:#fbefda;
+
+  /* ---- Semantic aliases ---- */
+  --brand:var(--indigo-700);
+  --brand-strong:var(--indigo-800);
+  --brand-hover:var(--indigo-600);
+  --brand-soft:var(--indigo-50);
+  --accent:var(--signal-teal);
+
+  --text-strong:var(--ink);
+  --text-body:var(--grey-700);
+  --text-muted:var(--grey-500);
+  --text-on-brand:var(--white);
+  --text-link:var(--indigo-700);
+  --text-link-hover:var(--indigo-500);
+
+  --surface-page:var(--white);
+  --surface-card:var(--white);
+  --surface-subtle:var(--grey-50);
+  --surface-sunken:var(--grey-100);
+  --surface-brand:var(--indigo-700);
+  --surface-brand-deep:var(--indigo-900);
+
+  --border-subtle:var(--grey-200);
+  --border-default:var(--grey-300);
+  --border-strong:var(--grey-400);
+  --border-brand:var(--indigo-700);
+
+  --focus-ring:var(--indigo-400);
+
+  --success:#2f9e5f;
+  --warning:var(--signal-amber);
+  --danger:var(--signal-red);
+
+  /* ---- Social / carousel palette (from the Instagram reference) ---- */
+  --social-bg:#05060f;        /* near-black cosmic ground */
+  --social-red:#e94a31;       /* highlight / accent display red-orange */
+  --social-cyan:#8bc7dd;      /* headline / label cyan */
+}
