@@ -1,7 +1,7 @@
 # Retratos da liderança
 
-A home procura estes quatro arquivos. Enquanto um deles não existir, o card mostra
-um placeholder índigo com as iniciais.
+A home usa estes quatro arquivos. Se algum faltar, o card mostra um placeholder
+índigo com as iniciais. Os originais enviados estão em `assets/lideranca/` (branch main).
 
 | arquivo | pessoa |
 |---|---|
@@ -10,11 +10,13 @@ um placeholder índigo com as iniciais.
 | `oswaldo-okamoto.jpg` | Oswaldo Keith Okamoto |
 | `jorge-kalil.jpg` | Jorge Kalil |
 
-## Padrão aplicado pelo site
+## Padrão
 
-O próprio site padroniza as fotos, então dá para subir o original:
+Arquivo (feito uma vez a partir do original):
+- recorte vertical 3:4, cabeça ocupando ~30% da altura, com ~9% de respiro acima
+- exposição normalizada, 900×1200 px (660×880 quando o original é pequeno), JPEG ~100 KB
 
-- recorte vertical 3:4, rosto na parte de cima do quadro (ponto de foco ajustado por pessoa no `index.html`)
+No site (CSS):
 - preto e branco com leve contraste, coberto por uma camada índigo `#270F70` em modo *color*: qualquer fundo (mural, janela, laboratório) fica no mesmo tom
 
 ## Para a melhor qualidade
