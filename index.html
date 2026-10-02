@@ -72,8 +72,10 @@
 
   <div data-player="" role="dialog" aria-modal="true" aria-label="{{ t.film }}" aria-hidden="{{ pAh }}" style="position:fixed;inset:0;z-index:300;background:#000;display:{{ pDisp }};cursor:{{ pCursor }}">
     <sc-if value="{{ playerLoaded }}" hint-placeholder-val="{{ false }}">
-      <div class="video-frame" style="position:absolute;inset:0">
-        <iframe src="https://fast.wistia.net/embed/iframe/39jobj362k?videoFoam=true&amp;playbar=false&amp;smallPlayButton=false&amp;fullscreenButton=false&amp;playButton=false&amp;controlsVisibleOnLoad=false&amp;silentAutoPlay=false&amp;copyLinkAndThumbnailEnabled=false&amp;playerColor=270f70&amp;autoPlay=true" title="Vyro · De inimigo a herói" allow="autoplay; fullscreen" allowFullScreen="{{ true }}" frameBorder="0" scrolling="no" style="width:100%;height:100%;border:0"></iframe>
+      <div class="video-frame" style="position:absolute;inset:0;display:grid;place-items:center">
+        <div style="position:relative;width:min(100vw, calc(100vh * 16 / 9));aspect-ratio:16 / 9">
+        <iframe class="wistia_embed" name="wistia_embed" src="https://fast.wistia.net/embed/iframe/39jobj362k?videoFoam=false&amp;fitStrategy=contain&amp;playbar=false&amp;smallPlayButton=false&amp;fullscreenButton=false&amp;playButton=false&amp;controlsVisibleOnLoad=false&amp;silentAutoPlay=false&amp;copyLinkAndThumbnailEnabled=false&amp;playerColor=270f70&amp;autoPlay=true" title="Vyro · De inimigo a herói" allow="autoplay; fullscreen" allowFullScreen="{{ true }}" frameBorder="0" scrolling="no" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
+        </div>
       </div>
     </sc-if>
     <div onMouseMove="{{ pMove }}" onClick="{{ pTogglePlay }}" style="position:absolute;inset:0"></div>
@@ -1106,19 +1108,20 @@ body.ann [data-rep],body.ann [data-i18n]{outline:1px dashed var(--signal-amber);
   };
 
   loadWistia() {
-    if (this.wq) { return; }
-    this.wq = true;
     window._wq = window._wq || [];
-    window._wq.push({ id: '39jobj362k', onReady: v => this.onVideo(v) });
+    if (!this.wq) { this.wq = true; window._wq.push({ id: '39jobj362k', onReady: v => this.onVideo(v) }); }
     if (!document.querySelector('script[data-wistia]')) { const s = document.createElement('script'); s.src = 'https://fast.wistia.net/assets/external/E-v1.js'; s.async = true; s.dataset.wistia = '1'; document.head.appendChild(s); }
-    let n = 0; const poll = () => { if (this.wv || n++ > 30) return; try { const v = window.Wistia && window.Wistia.api && window.Wistia.api('39jobj362k'); if (v) { this.onVideo(v); return; } } catch (e) {} setTimeout(poll, 500); }; setTimeout(poll, 800);
+    const gen = (this.wGen = (this.wGen || 0) + 1);
+    let n = 0; const poll = () => { if (gen !== this.wGen || !this.state.player || this.wv || n++ > 40) return; try { const v = window.Wistia && window.Wistia.api && window.Wistia.api('39jobj362k'); if (v) { this.onVideo(v); return; } } catch (e) {} setTimeout(poll, 400); }; setTimeout(poll, 600);
   }
   onVideo(v) {
-    if (this.wv === v) return; this.wv = v;
+    if (this.wv === v || !this.state.player) return; this.wv = v;
     try {
       v.bind('play', () => this.setState({ playing: true })); v.bind('pause', () => this.setState({ playing: false })); v.bind('end', () => this.setState({ playing: false }));
-      v.bind('timechange', t => this.updTime(t));
-      if (this.state.player) v.play();
+      v.bind('timechange', t => { this.lastT = t; this.updTime(t); });
+      if (this.lastT > 1) v.time(this.lastT);
+      if (this.state.muted) v.mute();
+      v.play();
     } catch (e) {}
   }
   updTime(t) {
@@ -1150,11 +1153,11 @@ body.ann [data-rep],body.ann [data-i18n]{outline:1px dashed var(--signal-amber);
   };
   closePlayer = () => {
     if (!this.state.player || this.closing) return; this.closing = true;
-    try { this.wv && this.wv.pause(); } catch (e) {}
+    try { if (this.wv) { this.lastT = this.wv.time(); this.wv.pause(); } } catch (e) {}
     if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
     const ov = this.rootRef.current.querySelector('[data-player]'), i = this.vIns || { t: 0, s: 0, b: 0, r: 0 };
     let fin = false;
-    const done = () => { if (fin) return; fin = true; this.closing = false; document.documentElement.style.overflow = ''; this.setState({ player: false, playing: false }); const f = this.retFocus; f && f.focus && f.focus({ preventScroll: true }); };
+    const done = () => { if (fin) return; fin = true; this.closing = false; document.documentElement.style.overflow = ''; this.wv = null; this.wGen = (this.wGen || 0) + 1; this.setState({ player: false, playerLoaded: false, playing: false }); const f = this.retFocus; f && f.focus && f.focus({ preventScroll: true }); };
     const an = this.isRM() ? ov.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 200 }) : ov.animate([{ clipPath: 'inset(0px 0px 0px 0px round 0px)' }, { clipPath: `inset(${i.t}px ${i.s}px ${i.b}px ${i.s}px round ${i.r}px)` }], { duration: 560, easing: 'cubic-bezier(.22,.61,.36,1)' });
     an.onfinish = done; setTimeout(done, 700);
   };
